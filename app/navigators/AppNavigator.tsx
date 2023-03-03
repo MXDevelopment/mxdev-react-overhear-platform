@@ -26,7 +26,9 @@ import { observer } from "mobx-react-lite"
 
 // Imports To Local
 import Config from "../config"
-import {WelcomeScreen,TutorialHolderScreen,SignInScreen} from "../screens"
+import { WelcomeScreen} from "../screens/WelcomeScreen"
+import { TutorialHolderScreen } from "../screens/TutorialHolderScreen"
+import { SignInScreen } from "../screens/SignInScreen"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 
 /**
@@ -44,7 +46,7 @@ import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
  */
 export type AppStackParamList = {
   Welcome: undefined
-  Tutorial: undefined
+  TutorialHolder: undefined
   SignIn: undefined
   // 🔥 Your screens go here
 }
@@ -64,15 +66,15 @@ export type AppStackParamList = {
 // // Documentation: https://reactnavigation.org/docs/stack-navigator/
 // const Stack = createNativeStackNavigator<AppStackParamList>()
 
-const Tab = createBottomTabNavigator<NavigatorParamList>()
-
+const Tab = createBottomTabNavigator<AppStackParamList>()
+//const Tab = createBottomTabNavigator()
 const AppStack = observer(function AppStack() {
   return (
     <Tab.Navigator
-      screenOptions={{ headerShown: false }} initialRouteName = "Tutorial">
+      screenOptions={{ headerShown: false }} initialRouteName = "Welcome">
           <Tab.Screen name="Welcome" component={WelcomeScreen} />
-          {/* <Tab.Screen name="Tutorial" component={TutorialHolderScreen} />
-          <Tab.Screen name="SignIn" component={SignInScreen} /> */}
+          <Tab.Screen name="TutorialHolder" component={TutorialHolderScreen} />
+          {/* <Tab.Screen name="SignIn" component={SignInScreen} /> */}
       {/** 🔥 Your screens go here */}
     </Tab.Navigator>
   )
