@@ -29,6 +29,9 @@ import Config from "../config"
 import {WelcomeScreen,TutorialScreen,SignInScreen} from "../screens"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 
+// Test Dependencies
+import { Image, ImageStyle,Text, TextStyle, View, ViewStyle } from "react-native"
+
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
  * as well as what properties (if any) they might take when navigating to them.
@@ -60,6 +63,39 @@ export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreen
   T
 >
 
+function SettingsScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Settings!</Text>
+    </View>
+  );
+}
+
+function InformationScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Tutorials!</Text>
+    </View>
+  );
+}
+
+function OverhearScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Overhear!</Text>
+    </View>
+  );
+}
+
+function LibraryScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Library!</Text>
+    </View>
+  );
+}
+
+
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const Stack = createNativeStackNavigator<AppStackParamList>()
 const Tab = createBottomTabNavigator<NavigatorParamList>()
@@ -69,6 +105,10 @@ const AppStack = observer(function AppStack() {
     <Tab.Navigator
       screenOptions={{ headerShown: false }} initialRouteName = "Welcome">
           <Tab.Screen name="Welcome" component={WelcomeScreen} />
+          <Tab.Screen name="Overhear" component={OverhearScreen} />
+          <Tab.Screen name="Library" component={LibraryScreen} />
+          <Tab.Screen name="Tutorials" component={InformationScreen} />
+          <Tab.Screen name="Settings" component={SettingsScreen} />
       {/** 🔥 Your screens go here */}
     </Tab.Navigator>
   )
