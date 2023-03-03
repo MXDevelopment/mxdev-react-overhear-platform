@@ -1,7 +1,7 @@
 // ---
 // patch:
 //   path: "app/screens/index.ts"
-//   append: "export * from \"./SignInScreen\"\n"
+//   append: "export * from \"./LibraryScreen\"\n"
 //   skip: 
 // ---
 
@@ -16,14 +16,14 @@ import { Screen, Text } from "../components"
 
 // STOP! READ ME FIRST!
 // To fix the TS error below, you'll need to add the following things in your navigation config:
-// - Add `SignIn: undefined` to AppStackParamList
+// - Add `Library: undefined` to AppStackParamList
 // - Import your screen, and add it to the stack:
-//     `<Stack.Screen name="SignIn" component={SignInScreen} />`
+//     `<Stack.Screen name="Library" component={LibraryScreen} />`
 // Hint: Look for the 🔥!
 
 // REMOVE ME! ⬇️ This TS ignore will not be necessary after you've added the correct navigator param type
 // @ts-ignore
-export const SignInScreen: FC<StackScreenProps<AppStackScreenProps, "SignIn">> = observer(function SignInScreen() {
+export const LibraryScreen: FC<StackScreenProps<AppStackScreenProps, "Library">> = observer(function LibraryScreen() {
   // Pull in one of our MST stores
   // const { someStore, anotherStore } = useStores()
 
@@ -31,7 +31,7 @@ export const SignInScreen: FC<StackScreenProps<AppStackScreenProps, "SignIn">> =
   // const navigation = useNavigation()
   return (
     <Screen style={{$root,  flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Sign In!</Text>
+        <Text>Library!</Text>
     </Screen>
   )
 })
