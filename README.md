@@ -1,22 +1,34 @@
-# Welcome to your new ignited app!
+# Overhear Platform
 
-[![CircleCI](https://circleci.com/gh/infinitered/ignite.svg?style=svg)](https://circleci.com/gh/infinitered/ignite)
+Deployment of the Overhear Platform through React for launch to all platforms in  2023
 
-## The latest and greatest boilerplate for Infinite Red opinions
+# Dependencies & Libraries
 
-This is the boilerplate that [Infinite Red](https://infinite.red) uses as a way to test bleeding-edge changes to our React Native stack.
+| Tag               | Group                | Version | Description                                       |
+|-------------------|----------------------|---------|---------------------------------------------------|
+| React Native      | Mobile Framework     | v0.70   | The best cross-platform mobile framework / Stable |
+| React             | UI Framework         | v18     | The most popular UI framework in the world        |
+| TypeScript        | Language             | v4      | Static typechecking                               |
+| React Navigation  | Navigation           | v6      | Performant and consistent navigation framework    |
+| MobX-State-Tree   | State Management     | v5      | Observable state tree                             |
+| MobX-React-Lite   | React Integration    | v3      | Re-render React performantly                      |
+| Expo              | SDK                  | v47     | Allows (optional) Expo modules                    |
+| Expo Font         | Custom Fonts         | v10     | Import custom fonts                               |
+| Expo Localization | Internationalization | v13     | i18n support (including RTL!)                     |
+| Expo Status Bar   | Status Bar Library   | v1      | Status bar support                                |
+| RN Reanimated     | Animations           | v2      | Beautiful and performant animations               |
+| AsyncStorage      | Persistence          | v1      | State persistence                                 |
+| apisauce          | REST client          | v2      | Communicate with back-end                         |
+| Flipper           | Debugger             |         | Native debugging                                  |
+| Reactotron RN     | Inspector/Debugger   | v2      | JS debugging                                      |
+| Hermes            | JS engine            |         | Fine-tuned JS engine for RN                       |
+| Jest              | Test Runner          | v26     | Standard test runner for JS apps                  |
+| Detox             | Testing Framework    | v19     | Graybox end-to-end testing                        |
+| date-fns          | Date library         | v2      | Excellent date library                            |
 
-Currently includes:
+## Directory Structure
 
-- React Native
-- React Navigation
-- MobX State Tree
-- TypeScript
-- And more!
-
-## Quick Start
-
-The Ignite boilerplate project's structure will look similar to this:
+The Initial Structure of the Repository is structured as follows
 
 ```
 ignite-project
@@ -53,36 +65,11 @@ ignite-project
 │       ├── navigator
 │       └── screen
 ├── index.js
-├── ios
-│   ├── IgniteProject
-│   ├── IgniteProject-tvOS
-│   ├── IgniteProject-tvOSTests
-│   ├── IgniteProject.xcodeproj
-│   └── IgniteProjectTests
 ├── .env
 └── package.json
 
 ```
-
-### ./app directory
-
-Included in an Ignite boilerplate project is the `app` directory. This is a directory you would normally have to create when using vanilla React Native.
-
-The inside of the `app` directory looks similar to the following:
-
-```
-app
-├── components
-├── config
-├── i18n
-├── models
-├── navigators
-├── screens
-├── services
-├── theme
-├── utils
-├── app.tsx
-```
+## Guide to Directory Structure
 
 **components**
 This is where your reusable components live which help you build your screens.
@@ -110,10 +97,6 @@ This is a great place to put miscellaneous helpers and utilities. Things like da
 
 **app.tsx** This is the entry point to your app. This is where you will find the main App component which renders the rest of the application.
 
-### ./ignite directory
-
-The `ignite` directory stores all things Ignite, including CLI and boilerplate items. Here you will find templates you can customize to help you get started with React Native.
-
 ### ./test directory
 
 This directory will hold your Jest configs and mocks.
@@ -122,9 +105,4 @@ This directory will hold your Jest configs and mocks.
 
 Read [Detox setup instructions](./detox/README.md).
 
-## Previous Boilerplates
-
-- [2018 aka Bowser](https://github.com/infinitered/ignite-bowser)
-- [2017 aka Andross](https://github.com/infinitered/ignite-andross)
-- [2016 aka Ignite 1.0](https://github.com/infinitered/ignite-ir-boilerplate-2016)
 
