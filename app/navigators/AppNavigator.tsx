@@ -107,8 +107,8 @@ const AppStack = observer(function AppStack() {
           <Tab.Screen name="Welcome" component={WelcomeScreen} />
           <Tab.Screen name="Overhear" component={OverhearScreen} />
           <Tab.Screen name="Library" component={LibraryScreen} />
+          <Tab.Screen name="Tutorials" component={InformationScreen} />
           <Tab.Screen name="Settings" component={SettingsScreen} />
-          <Tab.Screen name="Tutorial" component={InformationScreen} />
       {/** 🔥 Your screens go here */}
     </Tab.Navigator>
   )
