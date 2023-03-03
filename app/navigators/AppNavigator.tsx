@@ -71,6 +71,31 @@ function SettingsScreen() {
   );
 }
 
+function InformationScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Tutorials!</Text>
+    </View>
+  );
+}
+
+function OverhearScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Overhear!</Text>
+    </View>
+  );
+}
+
+function LibraryScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Library!</Text>
+    </View>
+  );
+}
+
+
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const Stack = createNativeStackNavigator<AppStackParamList>()
 const Tab = createBottomTabNavigator<NavigatorParamList>()
@@ -80,7 +105,10 @@ const AppStack = observer(function AppStack() {
     <Tab.Navigator
       screenOptions={{ headerShown: false }} initialRouteName = "Welcome">
           <Tab.Screen name="Welcome" component={WelcomeScreen} />
+          <Tab.Screen name="Overhear" component={OverhearScreen} />
+          <Tab.Screen name="Library" component={LibraryScreen} />
           <Tab.Screen name="Settings" component={SettingsScreen} />
+          <Tab.Screen name="Tutorial" component={InformationScreen} />
       {/** 🔥 Your screens go here */}
     </Tab.Navigator>
   )
