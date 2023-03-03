@@ -6,9 +6,9 @@ const en = {
   },
   welcomeScreen: {
     postscript:
-      "psst  — This probably isn't what your app looks like. (Unless your designer handed you these screens, and in that case, ship it!)",
-    readyForLaunch: "Your app, almost ready for launch!",
-    exciting: "(ohh, this is exciting!)",
+      "Overhear was launched in 2023 to help you tune in, be present and remember what we're here for. Stick Around!",
+    readyForLaunch: "Everything Is Here, Listen!",
+    exciting: "Welcome to Overhear",
   },
   errorScreen: {
     title: "Something went wrong!",
