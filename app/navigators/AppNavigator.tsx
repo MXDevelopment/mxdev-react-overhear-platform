@@ -4,6 +4,14 @@
  * Generally speaking, it will contain an auth flow (registration, login, forgot password)
  * and a "main" flow which the user will use once logged in.
  */
+
+// Imports to React
+import React from "react"
+
+// Imports to React-Native
+import { useColorScheme } from "react-native"
+
+// Imports For React-Navigation
 import {
   DarkTheme,
   DefaultTheme,
@@ -11,9 +19,12 @@ import {
 } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StackScreenProps } from "@react-navigation/stack"
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+// MobX Imports
 import { observer } from "mobx-react-lite"
-import React from "react"
-import { useColorScheme } from "react-native"
+
+// Imports To Local
 import Config from "../config"
 import {WelcomeScreen,TutorialScreen,SignInScreen} from "../screens"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
