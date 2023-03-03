@@ -27,7 +27,7 @@ import { observer } from "mobx-react-lite"
 // Imports To Local
 import Config from "../config"
 import { WelcomeScreen} from "../screens/WelcomeScreen"
-import { TutorialHolderScreen } from "../screens/TutorialHolderScreen"
+// import { TutorialHolderScreen } from "../screens/TutorialHolderScreen"
 import { SignInScreen } from "../screens/SignInScreen"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 
@@ -46,8 +46,8 @@ import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
  */
 export type AppStackParamList = {
   Welcome: undefined
-  TutorialHolder: undefined
-  SignIn: undefined
+  // TutorialHolder: undefined
+  // SignIn: undefined
   // 🔥 Your screens go here
 }
 
@@ -64,22 +64,31 @@ export type AppStackParamList = {
 // >
 
 // // Documentation: https://reactnavigation.org/docs/stack-navigator/
-// const Stack = createNativeStackNavigator<AppStackParamList>()
+const Stack = createNativeStackNavigator<AppStackParamList>()
 
-const Tab = createBottomTabNavigator<AppStackParamList>()
+// const Tab = createBottomTabNavigator<AppStackParamList>()
 //const Tab = createBottomTabNavigator()
 const AppStack = observer(function AppStack() {
   return (
-    <Tab.Navigator
+    <Stack.Navigator
       screenOptions={{ headerShown: false }} initialRouteName = "Welcome">
-          <Tab.Screen name="Welcome" component={WelcomeScreen} />
-          <Tab.Screen name="TutorialHolder" component={TutorialHolderScreen} />
-          {/* <Tab.Screen name="SignIn" component={SignInScreen} /> */}
+          <Stack.Screen name="Welcome" component={WelcomeScreen} />
       {/** 🔥 Your screens go here */}
-    </Tab.Navigator>
+    </Stack.Navigator>
   )
 })
 
+// const AppStack = observer(function AppStack() {
+//   return (
+//     <Tab.Navigator
+//       screenOptions={{ headerShown: false }} initialRouteName = "Welcome">
+//           <Tab.Screen name="Welcome" component={WelcomeScreen} />
+//           <Tab.Screen name="TutorialHolder" component={TutorialHolderScreen} />
+//           {/* <Tab.Screen name="SignIn" component={SignInScreen} /> */}
+//       {/** 🔥 Your screens go here */}
+//     </Tab.Navigator>
+//   )
+// })
 // const Tab = createBottomTabNavigator<NavigatorParamList>()
 
 // const AppStack = () => {
