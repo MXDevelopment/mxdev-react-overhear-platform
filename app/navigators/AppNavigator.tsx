@@ -61,7 +61,6 @@ export type AppStackParamList = {
   Tutorial: undefined
   Setting: undefined
   Test: undefined
-  // 🔥 Your screens go here
 }
 
 /**
