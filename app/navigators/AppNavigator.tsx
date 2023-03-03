@@ -26,7 +26,7 @@ import { observer } from "mobx-react-lite"
 
 // Imports To Local
 import Config from "../config"
-import {WelcomeScreen,TutorialScreen,SignInScreen} from "../screens"
+import {WelcomeScreen,TutorialHolderScreen,SignInScreen} from "../screens"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 
 /**
@@ -52,16 +52,18 @@ export type AppStackParamList = {
 /**
  * This is a list of all the route names that will exit the app if the back button
  * is pressed while in that screen. Only affects Android.
- */
-const exitRoutes = Config.exitRoutes
+//  */
 
-export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreenProps<
-  AppStackParamList,
-  T
->
+// const exitRoutes = Config.exitRoutes
 
-// Documentation: https://reactnavigation.org/docs/stack-navigator/
-const Stack = createNativeStackNavigator<AppStackParamList>()
+// export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreenProps<
+//   AppStackParamList,
+//   T
+// >
+
+// // Documentation: https://reactnavigation.org/docs/stack-navigator/
+// const Stack = createNativeStackNavigator<AppStackParamList>()
+
 const Tab = createBottomTabNavigator<NavigatorParamList>()
 
 const AppStack = observer(function AppStack() {
@@ -69,8 +71,8 @@ const AppStack = observer(function AppStack() {
     <Tab.Navigator
       screenOptions={{ headerShown: false }} initialRouteName = "Tutorial">
           <Tab.Screen name="Welcome" component={WelcomeScreen} />
-          <Tab.Screen name="Tutorial" component={TutorialScreen} />
-          <Tab.Screen name="SignIn" component={SignInScreen} />
+          {/* <Tab.Screen name="Tutorial" component={TutorialHolderScreen} />
+          <Tab.Screen name="SignIn" component={SignInScreen} /> */}
       {/** 🔥 Your screens go here */}
     </Tab.Navigator>
   )
