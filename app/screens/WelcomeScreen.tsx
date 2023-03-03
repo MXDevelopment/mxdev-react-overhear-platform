@@ -13,7 +13,6 @@ const welcomeFace = require("../../assets/overhear-assets/images/polygon-21.png"
 
 const welcomeLogo = require("../../assets/overhear-assets/images/ovhlogoartboard12x15.png")
 
-
 export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeScreen(
 ) {
 
