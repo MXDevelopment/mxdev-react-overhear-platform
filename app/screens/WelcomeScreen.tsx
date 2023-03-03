@@ -8,8 +8,10 @@ import { isRTL } from "../i18n"
 import { colors, spacing } from "../theme"
 import { useSafeAreaInsetsStyle } from "../utils/useSafeAreaInsetsStyle"
 
-const welcomeLogo = require("../../assets/images/logo.png")
-const welcomeFace = require("../../assets/images/welcome-face.png")
+// Import External Assets on To Home Screen
+const welcomeFace = require("../../assets/overhear-assets/images/polygon-21.png")
+
+const welcomeLogo = require("../../assets/overhear-assets/images/ovhlogoartboard12x15.png")
 
 
 export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeScreen(
