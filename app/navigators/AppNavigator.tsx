@@ -55,7 +55,7 @@ const Stack = createNativeStackNavigator<AppStackParamList>()
 const AppStack = observer(function AppStack() {
   return (
     <Stack.Navigator
-      screenOptions={{ headerShown: false }}>
+      screenOptions={{ headerShown: false }} initialRouteName = "Tutorial">
           <Stack.Screen name="Welcome" component={WelcomeScreen} />
           <Stack.Screen name="Tutorial" component={TutorialScreen} />
           <Stack.Screen name="SignIn" component={SignInScreen} />
@@ -64,6 +64,45 @@ const AppStack = observer(function AppStack() {
   )
 })
 
+// const Tab = createBottomTabNavigator<NavigatorParamList>()
+
+// const AppStack = () => {
+//   return (
+//     <Tab.Navigator
+//       screenOptions={{
+//         headerShown: false,
+//       }}
+//       initialRouteName="createFood"
+//     >
+//       <Tab.Screen
+//         name="createFood"
+//         component={CreateFoodScreen}
+//         options={{
+//           tabBarIcon: () => <Icon name="carrot" size={30} color="#333" />,
+//           title: "Create Food",
+//         }}
+//       />
+
+//       <Tab.Screen
+//         name="foodLogger"
+//         component={FoodLoggerScreen}
+//         options={{
+//           tabBarIcon: () => <Icon name="clipboard-list" size={30} color="#333" />,
+//           title: "Add Log",
+//         }}
+//       />
+
+//       <Tab.Screen
+//         name="report"
+//         component={ReportScreen}
+//         options={{
+//           tabBarIcon: () => <Icon name="chart-area" size={30} color="#333" />,
+//           title: "Report",
+//         }}
+//       />
+//     </Tab.Navigator>
+//   )
+// }
 interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
 
 export const AppNavigator = observer(function AppNavigator(props: NavigationProps) {
