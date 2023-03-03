@@ -4,24 +4,29 @@
  * Generally speaking, it will contain an auth flow (registration, login, forgot password)
  * and a "main" flow which the user will use once logged in.
  */
+
+// Imports to React
+import React from "react"
+
+// Imports to React-Native
+import { useColorScheme } from "react-native"
+
+// Imports For React-Navigation
 import {
   DarkTheme,
   DefaultTheme,
   NavigationContainer,
-  NavigatorScreenParams, // @demo remove-current-line
 } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StackScreenProps } from "@react-navigation/stack"
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+// MobX Imports
 import { observer } from "mobx-react-lite"
-import React from "react"
-import { useColorScheme } from "react-native"
+
+// Imports To Local
 import Config from "../config"
-import { useStores } from "../models" // @demo remove-current-line
-import {
-  LoginScreen, // @demo remove-current-line
-  WelcomeScreen,
-} from "../screens"
-import { DemoNavigator, DemoTabParamList } from "./DemoNavigator" // @demo remove-current-line
+import {WelcomeScreen,TutorialScreen,SignInScreen} from "../screens"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 
 /**
@@ -39,8 +44,8 @@ import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
  */
 export type AppStackParamList = {
   Welcome: undefined
-  Login: undefined // @demo remove-current-line
-  Demo: NavigatorScreenParams<DemoTabParamList> // @demo remove-current-line
+  Tutorial: undefined
+  SignIn: undefined
   // 🔥 Your screens go here
 }
 
@@ -57,38 +62,59 @@ export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreen
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const Stack = createNativeStackNavigator<AppStackParamList>()
+const Tab = createBottomTabNavigator<NavigatorParamList>()
 
 const AppStack = observer(function AppStack() {
-  // @demo remove-block-start
-  const {
-    authenticationStore: { isAuthenticated },
-  } = useStores()
-
-  // @demo remove-block-end
   return (
-    <Stack.Navigator
-      screenOptions={{ headerShown: false }}
-      initialRouteName={isAuthenticated ? "Welcome" : "Login"} // @demo remove-current-line
-    >
-      {/* @demo remove-block-start */}
-      {isAuthenticated ? (
-        <>
-          {/* @demo remove-block-end */}
-          <Stack.Screen name="Welcome" component={WelcomeScreen} />
-          {/* @demo remove-block-start */}
-          <Stack.Screen name="Demo" component={DemoNavigator} />
-        </>
-      ) : (
-        <>
-          <Stack.Screen name="Login" component={LoginScreen} />
-        </>
-      )}
-      {/* @demo remove-block-end */}
+    <Tab.Navigator
+      screenOptions={{ headerShown: false }} initialRouteName = "Tutorial">
+          <Tab.Screen name="Welcome" component={WelcomeScreen} />
+          <Tab.Screen name="Tutorial" component={TutorialScreen} />
+          <Tab.Screen name="SignIn" component={SignInScreen} />
       {/** 🔥 Your screens go here */}
-    </Stack.Navigator>
+    </Tab.Navigator>
   )
 })
 
+// const Tab = createBottomTabNavigator<NavigatorParamList>()
+
+// const AppStack = () => {
+//   return (
+//     <Tab.Navigator
+//       screenOptions={{
+//         headerShown: false,
+//       }}
+//       initialRouteName="createFood"
+//     >
+//       <Tab.Screen
+//         name="createFood"
+//         component={CreateFoodScreen}
+//         options={{
+//           tabBarIcon: () => <Icon name="carrot" size={30} color="#333" />,
+//           title: "Create Food",
+//         }}
+//       />
+
+//       <Tab.Screen
+//         name="foodLogger"
+//         component={FoodLoggerScreen}
+//         options={{
+//           tabBarIcon: () => <Icon name="clipboard-list" size={30} color="#333" />,
+//           title: "Add Log",
+//         }}
+//       />
+
+//       <Tab.Screen
+//         name="report"
+//         component={ReportScreen}
+//         options={{
+//           tabBarIcon: () => <Icon name="chart-area" size={30} color="#333" />,
+//           title: "Report",
+//         }}
+//       />
+//     </Tab.Navigator>
+//   )
+// }
 interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
 
 export const AppNavigator = observer(function AppNavigator(props: NavigationProps) {
