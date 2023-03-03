@@ -51,16 +51,17 @@ export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreen
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const Stack = createNativeStackNavigator<AppStackParamList>()
+const Tab = createBottomTabNavigator<NavigatorParamList>()
 
 const AppStack = observer(function AppStack() {
   return (
-    <Stack.Navigator
+    <Tab.Navigator
       screenOptions={{ headerShown: false }} initialRouteName = "Tutorial">
-          <Stack.Screen name="Welcome" component={WelcomeScreen} />
-          <Stack.Screen name="Tutorial" component={TutorialScreen} />
-          <Stack.Screen name="SignIn" component={SignInScreen} />
+          <Tab.Screen name="Welcome" component={WelcomeScreen} />
+          <Tab.Screen name="Tutorial" component={TutorialScreen} />
+          <Tab.Screen name="SignIn" component={SignInScreen} />
       {/** 🔥 Your screens go here */}
-    </Stack.Navigator>
+    </Tab.Navigator>
   )
 })
 
