@@ -69,7 +69,8 @@
     "react-native-screens": "~3.18.0",
     "reactotron-mst": "3.1.4",
     "reactotron-react-js": "^3.3.7",
-    "reactotron-react-native": "5.0.3"
+    "reactotron-react-native": "5.0.3",
+    "styled-components": "^5.3.8"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
