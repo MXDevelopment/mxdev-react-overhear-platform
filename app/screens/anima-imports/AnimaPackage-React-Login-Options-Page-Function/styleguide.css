@@ -1,0 +1,19 @@
+:root { 
+  --black: #000000;
+  --black-2: #0000008a;
+  --midnight-blue: #214176;
+  --mist-gray: #c4c4c4;
+  --white: #ffffff;
+ 
+  --font-size-l: 35px;
+  --font-size-m: 20px;
+  --font-size-s: 18px;
+  --font-size-xl: 40px;
+  --font-size-xs: 16px;
+ 
+  --font-family-manrope: "Manrope", Helvetica;
+  --font-family-poppins: "Poppins", Helvetica;
+  --font-family-roboto: "Roboto", Helvetica;
+  --font-family-sf_pro_display-medium: "SF Pro Display-Medium", Helvetica;
+  --font-family-sifonn-bold: "Sifonn-Bold", Helvetica;
+}

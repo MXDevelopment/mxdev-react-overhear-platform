@@ -1,0 +1,10 @@
+.login-options-page {
+  align-items: flex-start;
+  background-color: var(--midnight-blue);
+  border: 1px none;
+  display: flex;
+  flex-direction: column;
+  min-height: 715px;
+  width: 388px;
+}
+
