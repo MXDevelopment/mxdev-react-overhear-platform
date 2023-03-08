@@ -89,8 +89,8 @@ const Tab = createBottomTabNavigator<NavigatorParamList>()
 const AppStack = observer(function AppStack() {
   return (
     <Tab.Navigator
-      screenOptions={{ headerShown: false }} initialRouteName = "Welcome">
-          <Tab.Screen name="Welcome" component={WelcomeScreen} />
+      screenOptions={{ headerShown: false }} initialRouteName = "Welcome" backBehavior="order">
+          <Tab.Screen name="Welcome" component={WelcomeScreen} icon=/>
           <Tab.Screen name="SignIn" component={SignInScreen} />
           <Tab.Screen name="Overhear" component={OverhearScreen} />
           <Tab.Screen name="Library" component={LibraryScreen} />
