@@ -7,7 +7,7 @@
 
 import React, { FC } from "react"
 import { observer } from "mobx-react-lite"
-import { ViewStyle } from "react-native"
+import { ViewStyle, View } from "react-native"
 import { StackScreenProps } from "@react-navigation/stack"
 import { AppStackScreenProps } from "../navigators"
 import { Screen, Text } from "../components"
@@ -33,9 +33,8 @@ export const TutorialScreen: FC<StackScreenProps<AppStackScreenProps, "Tutorial"
   // const navigation = useNavigation()
   return (
     <Screen style={{$root,  flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <View style={$container}>
-            <View style={$topContainer}></View>
-            </View>
+            {/* <View style={color: 'red'}></View>
+            <View style={color:'blue'}></View> */}
         <Text>Tutorial!</Text>
     </Screen>
   )
