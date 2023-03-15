@@ -13,6 +13,10 @@ const welcomeFace = require("../../assets/overhear-assets/images/polygon-21.png"
 
 const welcomeLogo = require("../../assets/overhear-assets/images/ovhlogoartboard12x15.png")
 
+// Imports for UI
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+
 export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeScreen(
 ) {
 

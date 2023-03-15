@@ -40,7 +40,17 @@ import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 // Test Dependencies
 import { Image, ImageStyle,Text, TextStyle, View, ViewStyle } from "react-native"
 
+// Importing Local Style Dependencies
+// import { imagePath } from "../paths/imagePath"
+const libraryIcon = require('../screens/anima-imports/images/library-24-20-px.png')
+const mapIcon = require('../screens/anima-imports/images/map-icon-22-20-px.png')
+const wanderIcon = require('../screens/anima-imports/images/wander-20-22-px.png')
+const mailIcon = require('../screens/anima-imports/images/mail-20px.png')
+const settingsIcon = require('../screens/anima-imports/images/icons8-services-24.png')
+const tutorialIcon = require('../screens/anima-imports/images/icons8-nook-24.png')
+const signinIcon = require('../screens/anima-imports/images/icons8-guardian-24.png')
 /**
+ * 
  * This type allows TypeScript to know what routes are defined in this navigator
  * as well as what properties (if any) they might take when navigating to them.
  *
@@ -90,13 +100,84 @@ const AppStack = observer(function AppStack() {
   return (
     <Tab.Navigator
       screenOptions={{ headerShown: false }} initialRouteName = "Welcome" backBehavior="history" screenOptions={{showIcon: true}}>
-          <Tab.Screen name="Welcome" component={WelcomeScreen}/>
-          <Tab.Screen name="SignIn" component={SignInScreen} />
-          <Tab.Screen name="Overhear" component={OverhearScreen} />
-          <Tab.Screen name="Library" component={LibraryScreen} />
-          <Tab.Screen name="Tutorials" component={TutorialScreen} />
-          <Tab.Screen name="Settings" component={SettingScreen} />
-          <Tab.Screen name="Test" component={TestScreen} />
+          <Tab.Screen name="Welcome" component={WelcomeScreen}
+          options={
+            {
+              tabBarIcon: ({focused}) =>{
+                return(
+                  <Image source={wanderIcon} />
+                )
+              }
+            }
+          }
+          />
+          <Tab.Screen name="SignIn" component={SignInScreen} 
+                                        options={
+                                          {
+                                            tabBarIcon: ({focused}) =>{
+                                              return(
+                                                <Image source={signinIcon} />
+                                              )
+                                            }
+                                          }
+                                        }
+          />
+          <Tab.Screen name="Overhear" component={OverhearScreen} 
+                    options={
+                      {
+                        tabBarIcon: ({focused}) =>{
+                          return(
+                            <Image source={mapIcon} />
+                          )
+                        }
+                      }
+                    }/>
+          <Tab.Screen name="Library" component={LibraryScreen} 
+                    options={
+                      {
+                        tabBarIcon: ({focused}) =>{
+                          return(
+                            <Image source={libraryIcon} />
+                          )
+                        }
+                      }
+                    }
+          />
+          <Tab.Screen name="Tutorials" component={TutorialScreen} 
+                                        options={
+                                          {
+                                            tabBarIcon: ({focused}) =>{
+                                              return(
+                                                <Image source={tutorialIcon} />
+                                              )
+                                            }
+                                          }
+                                        }
+          />
+          
+          <Tab.Screen name="Settings" component={SettingScreen} 
+                              options={
+                                {
+                                  tabBarIcon: ({focused}) =>{
+                                    return(
+                                      <Image source={settingsIcon} />
+                                    )
+                                  }
+                                }
+                              }
+          />
+          <Tab.Screen name="Test" component={TestScreen} 
+                    options={
+                      {
+                        tabBarIcon: ({focused}) =>{
+                          return(
+                            <Image source={mailIcon} />
+                          )
+                        }
+                      }
+                    }
+          />
+
       {/** 🔥 Your screens go here */}
     </Tab.Navigator>
   )
