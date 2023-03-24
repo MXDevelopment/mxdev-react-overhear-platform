@@ -45,7 +45,7 @@ export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeSc
 
 const $container: ViewStyle = {
   flex: 1,
-  backgroundColor: colors.background,
+  backgroundColor: colors.palette.overhear_white,
 }
 
 const $topContainer: ViewStyle = {
@@ -59,7 +59,7 @@ const $topContainer: ViewStyle = {
 const $bottomContainer: ViewStyle = {
   flexShrink: 1,
   flexGrow: 0,
-  flexBasis: "43%",
+  flexBasis: "30%",
   backgroundColor: colors.palette.neutral100,
   borderTopLeftRadius: 16,
   borderTopRightRadius: 16,
@@ -82,5 +82,5 @@ const $welcomeFace: ImageStyle = {
 }
 
 const $welcomeHeading: TextStyle = {
-  marginBottom: spacing.medium,
+  marginBottom: spacing.medium
 }
