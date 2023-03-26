@@ -25,11 +25,10 @@ export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeSc
         <Text
           testID="welcome-heading"
           style={$welcomeHeading}
-          tx="welcomeScreen.readyForLaunch"
+          tx="welcomeScreen.topTitle"
           preset="heading"
         />
-        <Text tx="welcomeScreen.exciting" preset="subheading" />
-        <Image style={$welcomeFace} source={welcomeFace} resizeMode="contain" />
+        <Text tx="welcomeScreen.subHeading" style = {$welcomeHeading} preset="subheading" />
       </View>
 
       <View style={[$bottomContainer, $bottomContainerInsets]}>
@@ -79,4 +78,5 @@ const $welcomeFace: ImageStyle = {
 
 const $welcomeHeading: TextStyle = {
   marginBottom: spacing.medium,
+  textAlign: 'center'
 }
