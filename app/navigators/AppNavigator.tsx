@@ -96,19 +96,25 @@ export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreen
 const Stack = createNativeStackNavigator<AppStackParamList>()
 const Tab = createBottomTabNavigator<NavigatorParamList>()
 
-const navBarStyle = {
-height:"100",
+const navStyleConfig = {
 backgroundColor: "#214176",
 showIcon: true,
-flexShrink: 1,
-flexGrow: 0,
-flexBasis: "30%"
+// flexShrink: 1,
+// flexGrow: 0,
+flexBasis: "10%"
 }
 
+const headerStyleConfig = {
+  backgroundColor: "#214176",
+  height: 150,
+  justifyContent: "center"
+}
+
+// headerShown file
 const AppStack = observer(function AppStack() {
   return (
     <Tab.Navigator
-      screenOptions={{ headerShown: true, tabBarStyle: navBarStyle }} initialRouteName = "Welcome" backBehavior="history">
+      screenOptions={{ headerShown: true, headerStyle: headerStyleConfig, tabBarStyle: navStyleConfig }} initialRouteName = "Welcome" backBehavior="history">
           <Tab.Screen name="Welcome" component={WelcomeScreen}
           options={
             {

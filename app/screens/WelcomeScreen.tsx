@@ -13,10 +13,6 @@ const welcomeFace = require("../../assets/overhear-assets/images/polygon-21.png"
 
 const welcomeLogo = require("../../assets/overhear-assets/images/ovhlogoartboard12x15.png")
 
-// Imports for UI
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
-
 export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeScreen(
 ) {
 
@@ -45,7 +41,7 @@ export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeSc
 
 const $container: ViewStyle = {
   flex: 1,
-  backgroundColor: colors.palette.overhear_white,
+  backgroundColor: colors.background,
 }
 
 const $topContainer: ViewStyle = {
@@ -59,7 +55,7 @@ const $topContainer: ViewStyle = {
 const $bottomContainer: ViewStyle = {
   flexShrink: 1,
   flexGrow: 0,
-  flexBasis: "30%",
+  flexBasis: "43%",
   backgroundColor: colors.palette.neutral100,
   borderTopLeftRadius: 16,
   borderTopRightRadius: 16,
@@ -82,5 +78,5 @@ const $welcomeFace: ImageStyle = {
 }
 
 const $welcomeHeading: TextStyle = {
-  marginBottom: spacing.medium
+  marginBottom: spacing.medium,
 }
