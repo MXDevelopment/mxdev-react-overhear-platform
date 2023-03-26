@@ -106,8 +106,8 @@ flexBasis: "10%"
 
 const headerStyleConfig = {
   backgroundColor: "#214176",
-  height: 150,
-  justifyContent: "center"
+  height: 120,
+
 }
 
 // headerShown file

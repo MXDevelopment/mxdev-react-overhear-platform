@@ -40,8 +40,8 @@ export const SignInScreen: FC<StackScreenProps<AppStackScreenProps, "SignIn">> =
   // Pull in navigation via hook
   // const navigation = useNavigation()
 
-  const [username, onChangeUsername] = React.useState('Email');
-  const [password, onChangePassword] = React.useState('Password');
+  const [username, onChangeUsername] = React.useState('');
+  const [password, onChangePassword] = React.useState('');
 
   const $bottomContainerInsets = useSafeAreaInsetsStyle(["bottom"])
 
@@ -53,7 +53,7 @@ export const SignInScreen: FC<StackScreenProps<AppStackScreenProps, "SignIn">> =
                 <Text
                   testID="signin-title"
                   style={$signInTitle}
-                  tx="signInScreen.subHeading"
+                  tx="signInScreen.topTitle"
                   preset="heading"
                 />
                 <Text tx="signInScreen.optionMessage" style={$subHeadingStyle} preset="subheading" />
@@ -64,7 +64,7 @@ export const SignInScreen: FC<StackScreenProps<AppStackScreenProps, "SignIn">> =
                       style={inputStyleSheet.usernameFieldStyle}
                       onChangeText={onChangeUsername}
                       value={username}
-                      placeholder="Username"
+                      placeholder="Email"
                     />
                     <TextInput
                       style={inputStyleSheet.passwordFieldStyle}
@@ -78,13 +78,18 @@ export const SignInScreen: FC<StackScreenProps<AppStackScreenProps, "SignIn">> =
                       style={inputStyleSheet.submitButtonStyle}
                       margin= {'10px 30px'}
                     />
-                    <Button
+                    <Text
+                      tx = "signInScreen.resetDetailsMessage"
+                      style= {$resetPromptStyle}
+                    />
+                    {/* <Button
                       title="Sign Up"
                       color='#F4F2F1'
                       style={inputStyleSheet.registerButtonStyle}
                       margin= {'10px 30px'}
-                    />
+                    /> */}
               </View>
+              
             </View>
     </Screen>
   )
@@ -97,35 +102,30 @@ const $root: ViewStyle = {
 const inputStyleSheet= StyleSheet.create({
   usernameFieldStyle: {
     height: 40,
-    margin: 12,
     borderWidth: 1,
     padding: 10,
     textAlign: 'center'
   },
   passwordFieldStyle: {
     height: 40,
-    margin: 12,
     borderWidth: 1,
     padding: 10,
     textAlign: 'center'
   },
   submitButtonStyle:{
     justifyContent: "center",
-    padding: 20,
-    paddingVertical: 10,
     color: '#841584',
     backgroundColor: colors.palette.neutral100
   },
   registerButtonStyle:{
     justifyContent: "center",
-    padding: 20,
-    paddingVertical: 10,
     backgroundColor: colors.palette.neutral100
   },
 });
 
 const $container: ViewStyle = {
   flex: 1,
+  width: 300,
   backgroundColor: colors.background,
 }
 
@@ -134,13 +134,12 @@ const $topContainer: ViewStyle = {
   flexGrow: 1,
   flexBasis: "50%",
   justifyContent: "center",
+  // marginTop: 20,
   paddingHorizontal: spacing.large,
 }
 
 const $bottomContainer: ViewStyle = {
-  margin: 20,
-  flexShrink: 1,
-  flexGrow: 0,
+  marginBottom: 70,
   flexBasis: "40%",
   backgroundColor: colors.palette.neutral100,
   borderTopLeftRadius: 16,
@@ -153,7 +152,7 @@ const $bottomContainer: ViewStyle = {
 const $welcomeLogo: ImageStyle = {
   height: 88,
   width: "100%",
-  marginTop: spacing.medium,
+  marginTop: spacing.large,
   marginBottom: spacing.medium
 }
 
@@ -173,6 +172,11 @@ const $signInTitle: TextStyle = {
 }
 
 const $subHeadingStyle: TextStyle ={
+  fontFamily: 'Sifonn',
+  textAlign: 'center'
+}
+
+const $resetPromptStyle: TextStyle ={
   fontFamily: 'Sifonn',
   textAlign: 'center'
 }

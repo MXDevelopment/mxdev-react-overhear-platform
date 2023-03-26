@@ -15,7 +15,9 @@ const en = {
       "Overhear was launched in 2023 to help you tune in, be present and remember what we're here for. Stick Around!",
     topTitle: "Sign In",
     subHeading: "Choose an option below",
-    optionMessage: "Choose an option below"
+    optionMessage: "Choose an option below",
+    resetDetailsMessage: "Need to Sign Up?",
+    signUpMessage: "New User? Register & Signup Here"
   },
 
 
