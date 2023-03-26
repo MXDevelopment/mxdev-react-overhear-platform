@@ -7,7 +7,7 @@
 
 import React, { FC } from "react"
 import { observer } from "mobx-react-lite"
-import { ViewStyle } from "react-native"
+import { ViewStyle, View } from "react-native"
 import { StackScreenProps } from "@react-navigation/stack"
 import { AppStackScreenProps } from "../navigators"
 import { Screen, Text } from "../components"
@@ -23,6 +23,8 @@ import { Screen, Text } from "../components"
 
 // REMOVE ME! ⬇️ This TS ignore will not be necessary after you've added the correct navigator param type
 // @ts-ignore
+
+// REFERENCE - https://reactnavigation.org/docs/screen/
 export const TutorialScreen: FC<StackScreenProps<AppStackScreenProps, "Tutorial">> = observer(function TutorialScreen() {
   // Pull in one of our MST stores
   // const { someStore, anotherStore } = useStores()
@@ -31,6 +33,8 @@ export const TutorialScreen: FC<StackScreenProps<AppStackScreenProps, "Tutorial"
   // const navigation = useNavigation()
   return (
     <Screen style={{$root,  flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            {/* <View style={color: 'red'}></View>
+            <View style={color:'blue'}></View> */}
         <Text>Tutorial!</Text>
     </Screen>
   )
