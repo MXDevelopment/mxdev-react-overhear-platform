@@ -7,7 +7,7 @@
 
 import React, { FC, useState } from "react"
 import { observer } from "mobx-react-lite"
-import { View, ViewStyle, Image, ImageStyle, TextStyle} from "react-native"
+import { View, ViewStyle, Image, ImageStyle, TextStyle, TextInput, StyleSheet, Button, Form, Alert} from "react-native"
 import { StackScreenProps } from "@react-navigation/stack"
 import { AppStackScreenProps } from "../navigators"
 import { Screen, Text } from "../components"
@@ -33,29 +33,16 @@ const welcomeLogo = require("../../assets/overhear-assets/images/ovhlogoartboard
 // REMOVE ME! ⬇️ This TS ignore will not be necessary after you've added the correct navigator param type
 // @ts-ignore
 
-function LoginForm() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const handleLogin = (event) => {
-    event.preventDefault();
-    // TODO: Handle login logic
-  };
 
 export const SignInScreen: FC<StackScreenProps<AppStackScreenProps, "SignIn">> = observer(function SignInScreen() {
   // Pull in one of our MST stores
   // const { someStore, anotherStore } = useStores()
-
   // Pull in navigation via hook
   // const navigation = useNavigation()
+
+  const [username, onChangeUsername] = React.useState('Email');
+  const [password, onChangePassword] = React.useState('Password');
+
   const $bottomContainerInsets = useSafeAreaInsetsStyle(["bottom"])
 
   return (
@@ -73,24 +60,30 @@ export const SignInScreen: FC<StackScreenProps<AppStackScreenProps, "SignIn">> =
               </View>
 
               <View style={[$bottomContainer, $bottomContainerInsets]}>
-              <form onSubmit={handleLogin}>
-                <label>
-                  Username:
-                  <input type="text" value={username} onChange={handleUsernameChange} />
-                </label>
-                <br />
-                <label>
-                  Password:
-                  <input type="password" value={password} onChange={handlePasswordChange} />
-                </label>
-                <br />
-                <button type="submit">Login</button>
-                <br />
-                <div>
-                  <button>Log in with Google</button>
-                  <button>Log in with Facebook</button>
-                </div>
-              </form>
+                    <TextInput
+                      style={inputStyleSheet.usernameFieldStyle}
+                      onChangeText={onChangeUsername}
+                      value={username}
+                      placeholder="Username"
+                    />
+                    <TextInput
+                      style={inputStyleSheet.passwordFieldStyle}
+                      onChangeText={onChangePassword}
+                      value={password}
+                      placeholder="Password"
+                    />
+                    <Button
+                      title="Login"
+                      color='#F4F2F1'
+                      style={inputStyleSheet.submitButtonStyle}
+                      margin= {'10px 30px'}
+                    />
+                    <Button
+                      title="Sign Up"
+                      color='#F4F2F1'
+                      style={inputStyleSheet.registerButtonStyle}
+                      margin= {'10px 30px'}
+                    />
               </View>
             </View>
     </Screen>
@@ -101,6 +94,36 @@ const $root: ViewStyle = {
   flex: 1,
 }
 
+const inputStyleSheet= StyleSheet.create({
+  usernameFieldStyle: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    textAlign: 'center'
+  },
+  passwordFieldStyle: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    textAlign: 'center'
+  },
+  submitButtonStyle:{
+    justifyContent: "center",
+    padding: 20,
+    paddingVertical: 10,
+    color: '#841584',
+    backgroundColor: colors.palette.neutral100
+  },
+  registerButtonStyle:{
+    justifyContent: "center",
+    padding: 20,
+    paddingVertical: 10,
+    backgroundColor: colors.palette.neutral100
+  },
+});
+
 const $container: ViewStyle = {
   flex: 1,
   backgroundColor: colors.background,
@@ -109,25 +132,29 @@ const $container: ViewStyle = {
 const $topContainer: ViewStyle = {
   flexShrink: 1,
   flexGrow: 1,
-  flexBasis: "57%",
+  flexBasis: "50%",
   justifyContent: "center",
   paddingHorizontal: spacing.large,
 }
 
 const $bottomContainer: ViewStyle = {
+  margin: 20,
   flexShrink: 1,
   flexGrow: 0,
-  flexBasis: "43%",
+  flexBasis: "40%",
   backgroundColor: colors.palette.neutral100,
   borderTopLeftRadius: 16,
   borderTopRightRadius: 16,
+  borderBottomLeftRadius: 16,
+  borderBottomRightRadius: 16,
   paddingHorizontal: spacing.large,
   justifyContent: "space-around",
 }
 const $welcomeLogo: ImageStyle = {
   height: 88,
   width: "100%",
-  marginBottom: spacing.huge,
+  marginTop: spacing.medium,
+  marginBottom: spacing.medium
 }
 
 const $welcomeFace: ImageStyle = {
@@ -138,7 +165,7 @@ const $welcomeFace: ImageStyle = {
   right: -80,
   transform: [{ scaleX: isRTL ? -1 : 1 }],
 }
-
+ 
 const $signInTitle: TextStyle = {
   marginBottom: spacing.medium,
   fontFamily: 'Sifonn',
