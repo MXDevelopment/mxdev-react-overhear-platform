@@ -82,7 +82,7 @@ export const TutorialScreen: FC<StackScreenProps<AppStackScreenProps, "Tutorial"
                 data={images}
                 scrollAnimationDuration={1000}
                 onSnapToItem={(index) => console.log('current index:', index)}
-                renderItem={({ index }) => (
+                renderItem={({index}) => (
                     <View
                         style={{
                             flex: 1,
@@ -90,9 +90,10 @@ export const TutorialScreen: FC<StackScreenProps<AppStackScreenProps, "Tutorial"
                             justifyContent: 'center'
                         }}
                     >
-                        <Text style={{ textAlign: 'center', fontSize: 30 }}>
+                    <Image style={$tutorialScreenGenericStyle} source={images[index]} resizeMode="contain" />
+                        {/* <Text style={{ textAlign: 'center', fontSize: 30 }}>
                             {index}
-                        </Text>
+                        </Text> */}
                     </View>
                 )}
             />
@@ -125,3 +126,9 @@ const style = StyleSheet.create({
     resizeMode: 'cover',
   },
 });
+
+const $tutorialScreenGenericStyle: ImageStyle = {
+  borderRadius: 20,
+  flex:1,
+  resizeMode: 'center', 
+}
