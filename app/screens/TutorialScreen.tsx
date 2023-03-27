@@ -54,12 +54,12 @@ const images: string[] = [
   tutorialPage2,
   tutorialPage3,
   tutorialPage4,
-  tutorialPage5,  
-  wanderPage1,
-  wanderPage2,
-  wanderPage3,
-  wanderPage4,
-  wanderPage5
+  // tutorialPage5,  
+  // wanderPage1,
+  // wanderPage2,
+  // wanderPage3,
+  // wanderPage4,
+  // wanderPage5
 ];
 
 const {width, height} = Dimensions.get('screen');
@@ -73,14 +73,14 @@ export const TutorialScreen: FC<StackScreenProps<AppStackScreenProps, "Tutorial"
   // const navigation = useNavigation()
   return (
     <Screen style={{$root,  flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <View style={{ flex: 1 }}>
+        <View style={{$tutorialContainer}}>
             <Carousel
                 loop
                 width={width}
-                height={width / 2}
+                height={height / 2}
                 autoPlay={true}
                 data={images}
-                scrollAnimationDuration={1000}
+                scrollAnimationDuration={3000}
                 onSnapToItem={(index) => console.log('current index:', index)}
                 renderItem={({index}) => (
                     <View
@@ -90,7 +90,10 @@ export const TutorialScreen: FC<StackScreenProps<AppStackScreenProps, "Tutorial"
                             justifyContent: 'center'
                         }}
                     >
-                    <Image style={$tutorialScreenGenericStyle} source={images[index]} resizeMode="contain" />
+                    <Image
+                      style={$tutorialScreenGenericStyle} 
+                      source={images[index]} 
+                      resizeMode="center" />
                         {/* <Text style={{ textAlign: 'center', fontSize: 30 }}>
                             {index}
                         </Text> */}
@@ -110,7 +113,7 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   flatList: {flexGrow: 0},
   imageContainer: {
@@ -131,4 +134,9 @@ const $tutorialScreenGenericStyle: ImageStyle = {
   borderRadius: 20,
   flex:1,
   resizeMode: 'center', 
+}
+
+const $tutorialContainer: ViewStyle = {
+  flex: 1,
+
 }
