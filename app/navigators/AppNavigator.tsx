@@ -17,8 +17,11 @@ import {
   DefaultTheme,
   NavigationContainer,
 } from "@react-navigation/native"
-import { createNativeStackNavigator } from "@react-navigation/native-stack"
+
 import { StackScreenProps } from "@react-navigation/stack"
+
+// Navigator
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // MobX Imports
@@ -26,6 +29,7 @@ import { observer } from "mobx-react-lite"
 
 // Imports To Local
 import Config from "../config"
+
 // import { TestScreen } from "../screens/TestScreen"
 import { WelcomeScreen } from "../screens/WelcomeScreen"
 import { OverhearScreen } from "../screens/OverhearScreen"
@@ -41,7 +45,6 @@ import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 import { Image, ImageStyle,Text, TextStyle, View, ViewStyle } from "react-native"
 
 // Importing Local Style Dependencies
-// import { imagePath } from "../paths/imagePath"
 const libraryIcon = require('../screens/anima-imports/images/library-24-20-px.png')
 const mapIcon = require('../screens/anima-imports/images/map-icon-22-20-px.png')
 const wanderIcon = require('../screens/anima-imports/images/wander-20-22-px.png')
@@ -49,6 +52,7 @@ const mailIcon = require('../screens/anima-imports/images/mail-20px.png')
 const settingsIcon = require('../screens/anima-imports/images/icons8-services-24.png')
 const tutorialIcon = require('../screens/anima-imports/images/icons8-nook-24.png')
 const signinIcon = require('../screens/anima-imports/images/icons8-guardian-24.png')
+
 /**
  * 
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -84,14 +88,6 @@ export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreen
   T
 >
 
-// function SettingsScreen() {
-//   return (
-//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-//       <Text>Settings!</Text>
-//     </View>
-//   );
-// }
-
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const Stack = createNativeStackNavigator<AppStackParamList>()
 const Tab = createBottomTabNavigator<NavigatorParamList>()
@@ -99,8 +95,6 @@ const Tab = createBottomTabNavigator<NavigatorParamList>()
 const navStyleConfig = {
 backgroundColor: "#214176",
 showIcon: true,
-// flexShrink: 1,
-// flexGrow: 0,
 flexBasis: "10%"
 }
 
@@ -250,7 +244,7 @@ export const AppNavigator = observer(function AppNavigator(props: NavigationProp
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
       {...props}
     >
-      <AppStack />
+    <AppStack />
     </NavigationContainer>
   )
 })
