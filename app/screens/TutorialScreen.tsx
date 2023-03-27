@@ -5,12 +5,33 @@
 //   skip: 
 // ---
 
-import React, { FC } from "react"
+import React, { FC, useState } from "react"
 import { observer } from "mobx-react-lite"
-import { ViewStyle, View } from "react-native"
+import { View, ViewStyle, Image, ImageStyle, TextStyle, TextInput, StyleSheet, Button, Form, Alert} from "react-native"
 import { StackScreenProps } from "@react-navigation/stack"
 import { AppStackScreenProps } from "../navigators"
 import { Screen, Text } from "../components"
+
+import { colors, spacing } from "../theme"
+import { isRTL } from "../i18n"
+import { useSafeAreaInsetsStyle } from "../utils/useSafeAreaInsetsStyle"
+
+const welcomeFace = require("../../assets/overhear-assets/images/polygon-21.png")
+
+const welcomeLogo = require("../../assets/overhear-assets/images/ovhlogoartboard12x15.png")
+
+const tutorialPage1 = require("../../assets/overhear-assets/images/tutorial-screens/user-walkthrough/tutorial1.png")
+const tutorialPage2 = require("../../assets/overhear-assets/images/tutorial-screens/user-walkthrough/tutorial2.png")
+const tutorialPage3 = require("../../assets/overhear-assets/images/tutorial-screens/user-walkthrough/tutorial3.png")
+const tutorialPage4 = require("../../assets/overhear-assets/images/tutorial-screens/user-walkthrough/tutorial4.png")
+const tutorialPage5 = require("../../assets/overhear-assets/images/tutorial-screens/user-walkthrough/tutorial5.png")
+
+const wanderPage1 = require("../../assets/overhear-assets/images/tutorial-screens/user-walkthrough/wander1.png")
+const wanderPage2 = require("../../assets/overhear-assets/images/tutorial-screens/user-walkthrough/wander2.png")
+const wanderPage3 = require("../../assets/overhear-assets/images/tutorial-screens/user-walkthrough/wander3.png")
+const wanderPage4 = require("../../assets/overhear-assets/images/tutorial-screens/user-walkthrough/wander4.png")
+const wanderPage5 = require("../../assets/overhear-assets/images/tutorial-screens/user-walkthrough/wander5.png")
+
 // import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "../models"
 
