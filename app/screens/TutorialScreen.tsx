@@ -5,138 +5,116 @@
 //   skip: 
 // ---
 
-import React, { FC, useState, useRef } from "react"
-import { observer } from "mobx-react-lite"
-import { View, ViewStyle, Image, ImageStyle, TextStyle, TextInput, StyleSheet, Button, Form, Alert} from "react-native"
-import { StackScreenProps } from "@react-navigation/stack"
-import { AppStackScreenProps } from "../navigators"
-import { Screen, Text } from "../components"
+import React, { useState, useRef } from "react";
+import { View, Image, StyleSheet, FlatList, TouchableOpacity, Dimensions } from "react-native";
+import { StackScreenProps } from '@react-navigation/stack';
+import Tutorial1 from "../components/Tutorial1";
+import Tutorial2 from "../components/Tutorial2";
+import Tutorial3 from "../components/Tutorial3";
+import Tutorial4 from "../components/Tutorial4";
+import Tutorial5 from "../components/Tutorial5";
+import { AppStackParamList } from "../navigators/AppNavigator";
+import { CommonActions } from "@react-navigation/native";
 
-import { colors, spacing } from "../theme"
-import { isRTL } from "../i18n"
-import { useSafeAreaInsetsStyle } from "../utils/useSafeAreaInsetsStyle"
-
-// import {Carousel} from '../components';
-
-import {SafeAreaView} from 'react-native';
-
-// Carousel Dependencies
-import { Dimensions} from 'react-native';
-import Carousel from 'react-native-reanimated-carousel';
-
-const tutorialPage1 = require("../../assets/overhear-assets/images/tutorial-screens/user-walkthrough/tutorial1.png")
-const tutorialPage2 = require("../../assets/overhear-assets/images/tutorial-screens/user-walkthrough/tutorial2.png")
-const tutorialPage3 = require("../../assets/overhear-assets/images/tutorial-screens/user-walkthrough/tutorial3.png")
-const tutorialPage4 = require("../../assets/overhear-assets/images/tutorial-screens/user-walkthrough/tutorial4.png")
-const tutorialPage5 = require("../../assets/overhear-assets/images/tutorial-screens/user-walkthrough/tutorial5.png")
-
-const wanderPage1 = require("../../assets/overhear-assets/images/tutorial-screens/wander-walkthrough/wander1.png")
-const wanderPage2 = require("../../assets/overhear-assets/images/tutorial-screens/wander-walkthrough/wander2.png")
-const wanderPage3 = require("../../assets/overhear-assets/images/tutorial-screens/wander-walkthrough/wander3.png")
-const wanderPage4 = require("../../assets/overhear-assets/images/tutorial-screens/wander-walkthrough/wander4.png")
-const wanderPage5 = require("../../assets/overhear-assets/images/tutorial-screens/wander-walkthrough/wander5.png")
-
-// import { useNavigation } from "@react-navigation/native"
-// import { useStores } from "../models"
-
-// STOP! READ ME FIRST!
-// To fix the TS error below, you'll need to add the following things in your navigation config:
-// - Add `Tutorial: undefined` to AppStackParamList
-// - Import your screen, and add it to the stack:
-//     `<Stack.Screen name="Tutorial" component={TutorialScreen} />`
-// Hint: Look for the 🔥!
-
-// REMOVE ME! ⬇️ This TS ignore will not be necessary after you've added the correct navigator param type
-// @ts-ignore
-
-const images: string[] = [
-  tutorialPage1,
-  tutorialPage2,
-  tutorialPage3,
-  tutorialPage4,
-  // tutorialPage5,  
-  // wanderPage1,
-  // wanderPage2,
-  // wanderPage3,
-  // wanderPage4,
-  // wanderPage5
+const TutorialsData = [
+  { id: '1', Component: Tutorial1 },
+  { id: '2', Component: Tutorial2 },
+  { id: '3', Component: Tutorial3 },
+  { id: '4', Component: Tutorial4 },
+  { id: '5', Component: Tutorial5 },
 ];
 
-const {width, height} = Dimensions.get('screen');
+type TutorialScreenProps = StackScreenProps<AppStackParamList, "Tutorial">;
 
-// REFERENCE - https://reactnavigation.org/docs/screen/
-export const TutorialScreen: FC<StackScreenProps<AppStackScreenProps, "Tutorial">> = observer(function TutorialScreen() {
-  // Pull in one of our MST stores
-  // const { someStore, anotherStore } = useStores()
+export const TutorialScreen: React.FC<TutorialScreenProps> = ({ navigation }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  // Pull in navigation via hook
-  // const navigation = useNavigation()
+  const viewConfigRef = useRef({ viewAreaCoveragePercentThreshold: 50 });
+  const onViewRef = useRef((viewableItems) => {
+    setActiveIndex(viewableItems.changed[0].index);
+  });
+
+  const handleExitTutorial = () => {
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [
+          { name: "TabNavigator" },
+        ],
+      })
+    );
+  };
+
+  const tutorials = [<Tutorial1 />, <Tutorial2 />, <Tutorial3 />, <Tutorial4 />, <Tutorial5 />];
+
+  const renderItem = ({ item }: { item: React.ReactNode }) => ( // Specify the type of 'item' as React.ReactNode
+    <View style={{ width: Dimensions.get('window').width }}>
+      {item}
+    </View>
+  );
+
+  const renderExitCross = () => (
+    <TouchableOpacity style={styles.exitCrossContainer} onPress={handleExitTutorial}>
+      <Image source={require("../../assets/overhear-assets/images/exit-cross5.png")} 
+      style={styles.exitCrossImage}
+      resizeMode="contain"/>
+    </TouchableOpacity>
+  );
+
+  const renderDots = () => {
+    return (
+      <View style={styles.dotsContainer}>
+        {tutorials.map((_, i) => {
+          let backgroundColor = activeIndex === i ? '#FFFFFF' : '#D3D3D3';
+          return <View key={i} style={[styles.dot, {backgroundColor}]} />
+        })}
+      </View>
+    );
+  };
+
   return (
-    <Screen style={{$root,  flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <View style={{$tutorialContainer}}>
-            <Carousel
-                loop
-                width={width}
-                height={height / 2}
-                autoPlay={true}
-                data={images}
-                scrollAnimationDuration={3000}
-                onSnapToItem={(index) => console.log('current index:', index)}
-                renderItem={({index}) => (
-                    <View
-                        style={{
-                            flex: 1,
-                            borderWidth: 1,
-                            justifyContent: 'center'
-                        }}
-                    >
-                    <Image
-                      style={$tutorialScreenGenericStyle} 
-                      source={images[index]} 
-                      resizeMode="center" />
-                        {/* <Text style={{ textAlign: 'center', fontSize: 30 }}>
-                            {index}
-                        </Text> */}
-                    </View>
-                )}
-            />
-        </View>
-    </Screen>
-  )
-})
-
-const $root: ViewStyle = {
-  flex: 1,
-}
-
-const style = StyleSheet.create({
-  container: {
+    <View style={styles.tutorialContainer}>
+      {renderExitCross()}
+      <FlatList 
+        style={{ flex: 1, backgroundColor: '#214176' }}
+        data={tutorials}
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        keyExtractor={(_, index) => 'tutorial-' + index}
+        renderItem={renderItem}
+        onViewableItemsChanged={onViewRef.current}
+        viewabilityConfig={viewConfigRef.current}
+      />
+      {renderDots()}
+    </View>
+  );
+};
+const styles = StyleSheet.create({
+  tutorialContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    height: '100%',
   },
-  flatList: {flexGrow: 0},
-  imageContainer: {
-    width,
-    height: 500,
-    alignItems: 'center',
-    justifyContent: 'center',
+  exitCrossContainer: {
+    position: 'absolute',
+    top: 25,
+    right: 20,
+    zIndex: 1,
   },
-  image: {
-    height: 300,
-    width: width - 150,
-    borderRadius: 20,
-    resizeMode: 'cover',
+  exitCrossImage: {
+    width: 30, 
+    height: 30,
+  },
+  dotsContainer: {
+    position: 'absolute',
+    bottom: 20,
+    flexDirection: 'row',
+    alignSelf: 'center',
+  },
+  dot: {
+    height: 10,
+    width: 10,
+    borderRadius: 5,
+    marginHorizontal: 5,
   },
 });
-
-const $tutorialScreenGenericStyle: ImageStyle = {
-  borderRadius: 20,
-  flex:1,
-  resizeMode: 'center', 
-}
-
-const $tutorialContainer: ViewStyle = {
-  flex: 1,
-
-}

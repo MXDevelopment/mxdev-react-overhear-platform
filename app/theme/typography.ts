@@ -1,14 +1,18 @@
-// TODO: write documentation about fonts and typography along with guides on how to add custom fonts in own
-// markdown file and add links from here
-
-import { Platform } from "react-native"
+import { Platform } from "react-native";
 import {
   SpaceGrotesk_300Light as spaceGroteskLight,
   SpaceGrotesk_400Regular as spaceGroteskRegular,
   SpaceGrotesk_500Medium as spaceGroteskMedium,
   SpaceGrotesk_600SemiBold as spaceGroteskSemiBold,
   SpaceGrotesk_700Bold as spaceGroteskBold,
-} from "@expo-google-fonts/space-grotesk"
+} from "@expo-google-fonts/space-grotesk";
+import * as Font from 'expo-font';
+
+// Pre-load the custom font 
+Font.loadAsync({
+  SIFONN_PRO: require("../../assets/fonts/SIFONN_PRO.ttf"),
+  SIFONN_BASIC_OUTLINE: require("../../assets/fonts/SIFONN_BASIC_OUTLINE.otf"),
+});
 
 export const customFontsToLoad = {
   spaceGroteskLight,
@@ -16,7 +20,9 @@ export const customFontsToLoad = {
   spaceGroteskMedium,
   spaceGroteskSemiBold,
   spaceGroteskBold,
-}
+  SIFONN_PRO: "SIFONN_PRO",
+  SIFONN_BASIC_OUTLINE: "SIFONN_BASIC_OUTLINE"
+};
 
 const fonts = {
   spaceGrotesk: {
@@ -49,7 +55,11 @@ const fonts = {
     // Android only font.
     normal: "monospace",
   },
-}
+  SIFONN_PRO: {
+    normal: "SIFONN_PRO",
+    outline: "SIFONN_BASIC_OUTLINE"
+  },
+};
 
 export const typography = {
   /**
@@ -68,4 +78,8 @@ export const typography = {
    * Lets get fancy with a monospace font!
    */
   code: Platform.select({ ios: fonts.courier, android: fonts.monospace }),
-}
+  /**
+   * The custom font.
+   */
+  custom: fonts.SIFONN_PRO,
+};

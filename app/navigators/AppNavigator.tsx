@@ -4,54 +4,17 @@
  * Generally speaking, it will contain an auth flow (registration, login, forgot password)
  * and a "main" flow which the user will use once logged in.
  */
+import React, { useEffect, useState } from "react";
+import { useColorScheme } from "react-native";
+import { DarkTheme, DefaultTheme, NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { observer } from "mobx-react-lite";
+import { StackScreenProps } from "@react-navigation/stack";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Imports to React
-import React from "react"
-
-// Imports to React-Native
-import { useColorScheme } from "react-native"
-
-// Imports For React-Navigation
-import {
-  DarkTheme,
-  DefaultTheme,
-  NavigationContainer,
-} from "@react-navigation/native"
-
-import { StackScreenProps } from "@react-navigation/stack"
-
-// Navigator
-import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-// MobX Imports
-import { observer } from "mobx-react-lite"
-
-// Imports To Local
-import Config from "../config"
-
-// import { TestScreen } from "../screens/TestScreen"
-import { WelcomeScreen } from "../screens/WelcomeScreen"
-import { OverhearScreen } from "../screens/OverhearScreen"
-import { LibraryScreen } from "../screens/LibraryScreen"
-import { TutorialScreen } from "../screens/TutorialScreen"
-import { SettingScreen } from "../screens/SettingScreen"
-import { TestScreen } from "../screens/TestScreen"
-import { SignInScreen } from "../screens/SignInScreen"
-
-import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
-
-// Test Dependencies
-import { Image, ImageStyle,Text, TextStyle, View, ViewStyle } from "react-native"
-
-// Importing Local Style Dependencies
-const libraryIcon = require('../screens/anima-imports/images/library-24-20-px.png')
-const mapIcon = require('../screens/anima-imports/images/map-icon-22-20-px.png')
-const wanderIcon = require('../screens/anima-imports/images/wander-20-22-px.png')
-const mailIcon = require('../screens/anima-imports/images/mail-20px.png')
-const settingsIcon = require('../screens/anima-imports/images/icons8-services-24.png')
-const tutorialIcon = require('../screens/anima-imports/images/icons8-nook-24.png')
-const signinIcon = require('../screens/anima-imports/images/icons8-guardian-24.png')
+import Config from "../config";
+import { TutorialScreen } from "../screens/TutorialScreen";
+import TabNavigator from "./TabNavigator";
 
 /**
  * 
@@ -68,183 +31,57 @@ const signinIcon = require('../screens/anima-imports/images/icons8-guardian-24.p
  *   https://reactnavigation.org/docs/typescript/#organizing-types
  */
 export type AppStackParamList = {
-  Welcome: undefined
-  SignIn: undefined
-  Overhear: undefined
-  Library: undefined
-  Tutorial: undefined
-  Setting: undefined
-  Test: undefined
-}
+  TabNavigator: undefined;
+  Tutorial: undefined;
+};
 
-/**
- * This is a list of all the route names that will exit the app if the back button
- * is pressed while in that screen. Only affects Android.
- */
-const exitRoutes = Config.exitRoutes
+export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreenProps<AppStackParamList, T>;
 
-export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreenProps<
-  AppStackParamList,
-  T
->
+const exitRoutes = Config.exitRoutes;
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
-const Stack = createNativeStackNavigator<AppStackParamList>()
-const Tab = createBottomTabNavigator<NavigatorParamList>()
+const Stack = createNativeStackNavigator<AppStackParamList>();
 
-const navStyleConfig = {
-backgroundColor: "#214176",
-showIcon: true,
-flexBasis: "10%"
-}
-
-const headerStyleConfig = {
-  backgroundColor: "#214176",
-  height: 120,
-
-}
-
-// headerShown file
-const AppStack = observer(function AppStack() {
-  return (
-    <Tab.Navigator
-      screenOptions={{ headerShown: true, headerStyle: headerStyleConfig, tabBarStyle: navStyleConfig }} initialRouteName = "Welcome" backBehavior="history">
-          <Tab.Screen name="Welcome" component={WelcomeScreen}
-          options={
-            {
-              tabBarIcon: ({focused}) =>{
-                return(
-                  <Image source={wanderIcon} />
-                )
-              }
-            }
-          }
-          />
-          <Tab.Screen name="SignIn" component={SignInScreen} 
-                                        options={
-                                          {
-                                            tabBarIcon: ({focused}) =>{
-                                              return(
-                                                <Image source={signinIcon} />
-                                              )
-                                            }
-                                          }
-                                        }
-          />
-          <Tab.Screen name="Overhear" component={OverhearScreen} 
-                    options={
-                      {
-                        tabBarIcon: ({focused}) =>{
-                          return(
-                            <Image source={mapIcon} />
-                          )
-                        }
-                      }
-                    }/>
-          <Tab.Screen name="Library" component={LibraryScreen} 
-                    options={
-                      {
-                        tabBarIcon: ({focused}) =>{
-                          return(
-                            <Image source={libraryIcon} />
-                          )
-                        }
-                      }
-                    }
-          />
-          <Tab.Screen name="Tutorials" component={TutorialScreen} 
-                                        options={
-                                          {
-                                            tabBarIcon: ({focused}) =>{
-                                              return(
-                                                <Image source={tutorialIcon} />
-                                              )
-                                            }
-                                          }
-                                        }
-          />
-          
-          <Tab.Screen name="Settings" component={SettingScreen} 
-                              options={
-                                {
-                                  tabBarIcon: ({focused}) =>{
-                                    return(
-                                      <Image source={settingsIcon} />
-                                    )
-                                  }
-                                }
-                              }
-          />
-          <Tab.Screen name="Test" component={TestScreen} 
-                    options={
-                      {
-                        tabBarIcon: ({focused}) =>{
-                          return(
-                            <Image source={mailIcon} />
-                          )
-                        }
-                      }
-                    }
-          />
-
-      {/** 🔥 Your screens go here */}
-    </Tab.Navigator>
-  )
-})
-
-// const Tab = createBottomTabNavigator<NavigatorParamList>()
-
-// const AppStack = () => {
-//   return (
-//     <Tab.Navigator
-//       screenOptions={{
-//         headerShown: false,
-//       }}
-//       initialRouteName="createFood"
-//     >
-//       <Tab.Screen
-//         name="createFood"
-//         component={CreateFoodScreen}
-//         options={{
-//           tabBarIcon: () => <Icon name="carrot" size={30} color="#333" />,
-//           title: "Create Food",
-//         }}
-//       />
-
-//       <Tab.Screen
-//         name="foodLogger"
-//         component={FoodLoggerScreen}
-//         options={{
-//           tabBarIcon: () => <Icon name="clipboard-list" size={30} color="#333" />,
-//           title: "Add Log",
-//         }}
-//       />
-
-//       <Tab.Screen
-//         name="report"
-//         component={ReportScreen}
-//         options={{
-//           tabBarIcon: () => <Icon name="chart-area" size={30} color="#333" />,
-//           title: "Report",
-//         }}
-//       />
-//     </Tab.Navigator>
-//   )
-// }
 interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
 
-export const AppNavigator = observer(function AppNavigator(props: NavigationProps) {
-  const colorScheme = useColorScheme()
+export const AppNavigator: React.FC<NavigationProps> = observer(function AppNavigator(props: NavigationProps) {
+  const colorScheme = useColorScheme();
+  const [initialRouteName, setInitialRouteName] = useState<keyof AppStackParamList | null>(null); // Default value
 
-  useBackButtonHandler((routeName) => exitRoutes.includes(routeName))
+  useEffect(() => {
+    const checkFirstLaunch = async () => {
+      try {
+        const firstLaunch = await AsyncStorage.getItem("firstLaunch");
+        if (firstLaunch === null) {
+          await AsyncStorage.setItem("firstLaunch", "true");
+          setInitialRouteName("Tutorial");
+        } else {
+          setInitialRouteName("TabNavigator");
+        }
+      } catch (error) {
+        console.log("Error retrieving firstLaunch value from AsyncStorage: ", error);
+        setInitialRouteName("TabNavigator"); // default to TabNavigator in case of error
+      }
+    };
+
+    checkFirstLaunch();
+  }, []);
+
+  if (initialRouteName === null) {
+    return null; // Or return a loading spinner
+  }
 
   return (
-    <NavigationContainer
-      ref={navigationRef}
-      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-      {...props}
-    >
-    <AppStack />
+    <NavigationContainer theme={colorScheme === "dark" ? DarkTheme : DefaultTheme} {...props}>
+      <Stack.Navigator
+        initialRouteName={initialRouteName}
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="Tutorial" component={TutorialScreen} />
+        <Stack.Screen name="TabNavigator" component={TabNavigator} />
+      </Stack.Navigator>
     </NavigationContainer>
-  )
-})
+  );
+});

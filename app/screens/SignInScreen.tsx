@@ -7,11 +7,11 @@
 
 import React, { FC, useState } from "react"
 import { observer } from "mobx-react-lite"
-import { View, ViewStyle, Image, ImageStyle, TextStyle, TextInput, StyleSheet, Button, Form, Alert} from "react-native"
+import { View, ViewStyle, Image, ImageStyle, TextStyle, TextInput, StyleSheet, Button, Alert} from "react-native"
 import { StackScreenProps } from "@react-navigation/stack"
 import { AppStackScreenProps } from "../navigators"
 import { Screen, Text } from "../components"
-
+import { typography } from '../theme/typography'
 import { colors, spacing } from "../theme"
 import { isRTL } from "../i18n"
 import { useSafeAreaInsetsStyle } from "../utils/useSafeAreaInsetsStyle"
@@ -168,16 +168,16 @@ const $welcomeFace: ImageStyle = {
  
 const $signInTitle: TextStyle = {
   marginBottom: spacing.medium,
-  fontFamily: 'Sifonn',
+  fontFamily: typography.custom.normal,
   textAlign: 'center'
 }
 
 const $subHeadingStyle: TextStyle ={
-  fontFamily: 'Sifonn',
+  fontFamily: typography.custom.normal,
   textAlign: 'center'
 }
 
 const $resetPromptStyle: TextStyle ={
-  fontFamily: 'Sifonn',
+  fontFamily: typography.custom.normal,
   textAlign: 'center'
 }
