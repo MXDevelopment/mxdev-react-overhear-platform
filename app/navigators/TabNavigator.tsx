@@ -38,7 +38,6 @@ const TabNavigator: React.FC = () => {
         },
         tabBarStyle: {
           backgroundColor: "#214176",
-          showIcon: true,
           flexBasis: "10%",
         },
       }}
