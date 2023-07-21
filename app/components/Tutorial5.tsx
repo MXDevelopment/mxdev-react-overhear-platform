@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontFamily: typography.custom.outline,
     alignSelf: "stretch",
-    marginVertical: 70,
+    marginVertical: 50,
   },
   relectFlexBox: {
     textAlign: "center",
@@ -56,11 +56,12 @@ const styles = StyleSheet.create({
   },
   takeTimeTo: {
     textAlign: "left",
-    height: 16,
+    height: 22,
     color: "#fff",
     fontFamily: typography.custom.normal,
     fontSize: 20,
     alignSelf: "stretch",
+    marginTop: 20,
   },
   pause: {
     fontSize: 75,

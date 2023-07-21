@@ -16,14 +16,11 @@ export const Tutorial4 = () => {
       <View>
         <ImageBackground
           style={styles.listen1Icon}
-          resizeMode="cover"
+          resizeMode="stretch"
           source={require("../../assets/overhear-assets/images/listen1.png")}
         />
         <View
-          style={[
-            styles.toWhatYouveFoundByTappinWrapper,
-          ]}
-        >
+          style={[styles.toWhatYouveFoundByTappinWrapper,]}>
           <Text style={styles.toWhatYouve} numberOfLines={2}>
             ...to what you’ve found by tapping “Library”
           </Text>
@@ -43,15 +40,8 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
   },
-  exitCross: {
-    position: "absolute",
-    top: 10,
-    right: 10,
-    width: 23,
-    height: 22,
-  },
   listen1Icon: {
-    width: 375,
+    width: '100%',
     height: 427,
   },
   toWhatYouve: {

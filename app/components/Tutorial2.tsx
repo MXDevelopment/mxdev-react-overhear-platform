@@ -19,19 +19,19 @@ export const Tutorial2 = () => {
           <View style={[styles.walkerImageContainer, styles.walkerFlexBox]}>
             <ImageBackground
               style={styles.walkerFlexBox}
-              resizeMode="cover"
+              resizeMode="contain"
               source={require("../../assets/overhear-assets/images/walker.png")}
             />
           </View>
         </View>
+        <View style={styles.textContainer}>
         <Text
           style={[styles.overhearWorkOnContainer, styles.moveFlexBox]}
           numberOfLines={2}
         >
-          <Text style={styles.overhearWorkOnContainer1}>
-            {`Overhear works on location! `}Head to a pin on the Map.
+            Overhear works on location!{'\n'}Head to a pin on the Map.
           </Text>
-        </Text>
+        </View>
       </View>
     </View>
   );
@@ -64,13 +64,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   overhearWorkOnContainer1: {
-    lineBreak: "anywhere",
+    textAlign: "center",
+    
   },
   overhearWorkOnContainer: {
     fontSize: 20,
-    height: 40,
+    height: 50,
     marginTop: 57,
   },
+  textContainer: {
+    flex: .2,
+    paddingBottom: 50,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  
   content: {
     paddingLeft: 24,
     paddingRight: 11,
@@ -81,7 +89,7 @@ const styles = StyleSheet.create({
   tutorial9: {
     backgroundColor: "#214176",
     width: "100%",
-    height: 667,
+    height: "100%",
     paddingBottom: 10,
     alignItems: "center",
     flex: 1,

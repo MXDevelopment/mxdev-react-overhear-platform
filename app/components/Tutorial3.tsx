@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   autoCollectIcon: {
     height: 383,
     width: 308,
-    marginVertical: 20,
+    marginVertical: 10,
   },
   mapImageContainer: {
     alignSelf: "stretch",
