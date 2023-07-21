@@ -1,9 +1,3 @@
-// ---
-// patch:
-//   path: "app/screens/index.ts"
-//   append: "export * from \"./TutorialScreen\"\n"
-//   skip: 
-// ---
 
 import React, { useState, useRef } from "react";
 import { View, Image, StyleSheet, FlatList, TouchableOpacity, Dimensions } from "react-native";

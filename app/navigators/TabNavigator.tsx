@@ -14,7 +14,6 @@ const mapIcon = require("../screens/anima-imports/images/map-icon-22-20-px.png")
 const wanderIcon = require("../screens/anima-imports/images/wander-20-22-px.png");
 const mailIcon = require("../screens/anima-imports/images/mail-20px.png");
 const settingsIcon = require("../screens/anima-imports/images/icons8-services-24.png");
-const tutorialIcon = require("../screens/anima-imports/images/icons8-nook-24.png");
 const signinIcon = require("../screens/anima-imports/images/icons8-guardian-24.png");
 
 export type NavigatorParamList = {

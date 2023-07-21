@@ -1,41 +1,73 @@
-// ---
-// patch:
-//   path: "app/screens/index.ts"
-//   append: "export * from \"./LibraryScreen\"\n"
-//   skip: 
-// ---
+import React, { useState } from 'react';
+import { FlatList, StyleSheet, View, Text, Animated } from 'react-native';
+import { ListItem } from '../components/ListItem';
+import { Swipeable, RectButton } from 'react-native-gesture-handler';
 
-import React, { FC } from "react"
-import { observer } from "mobx-react-lite"
-import { ViewStyle } from "react-native"
-import { StackScreenProps } from "@react-navigation/stack"
-import { AppStackScreenProps } from "../navigators"
-import { Screen, Text } from "../components"
-// import { useNavigation } from "@react-navigation/native"
-// import { useStores } from "../models"
+export const LibraryScreen = () => {
+  const [itemContainerFlatListData, setItemContainerFlatListData] = useState([
+    {title: 'Title 1', author: 'Author 1'},
+    {title: 'Title 2', author: 'Author 2'},
+    {title: 'Title 2', author: 'Author 3'},
+  ]);
 
-// STOP! READ ME FIRST!
-// To fix the TS error below, you'll need to add the following things in your navigation config:
-// - Add `Library: undefined` to AppStackParamList
-// - Import your screen, and add it to the stack:
-//     `<Stack.Screen name="Library" component={LibraryScreen} />`
-// Hint: Look for the 🔥!
+  const handleDelete = (index) => {
+    const newData = [...itemContainerFlatListData];
+    newData.splice(index, 1);
+    setItemContainerFlatListData(newData);
+  };
 
-// REMOVE ME! ⬇️ This TS ignore will not be necessary after you've added the correct navigator param type
-// @ts-ignore
-export const LibraryScreen: FC<StackScreenProps<AppStackScreenProps, "Library">> = observer(function LibraryScreen() {
-  // Pull in one of our MST stores
-  // const { someStore, anotherStore } = useStores()
+  const renderRightAction = (progress, index) => {
+    const trans = progress.interpolate({
+      inputRange: [0, 1],
+      outputRange: [64, 0],
+    });
+    return (
+      <RectButton onPress={() => handleDelete(index)}>
+        <Animated.View style={{ flex: 1, transform: [{ translateX: trans }] }}>
+          <Text style={styles.deleteButton}>Delete</Text>
+        </Animated.View>
+      </RectButton>
+    );
+  };
 
-  // Pull in navigation via hook
-  // const navigation = useNavigation()
+  const renderItem = ({ item, index }) => {
+    return (
+      <Swipeable renderRightActions={(progress) => renderRightAction(progress, index)}>
+        <ListItem key={index} title={item.title} author={item.author} />
+      </Swipeable>
+    );
+  }
+
   return (
-    <Screen style={{$root,  flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Library!</Text>
-    </Screen>
-  )
-})
+    <FlatList
+      style={styles.listFlexBox}
+      data={itemContainerFlatListData}
+      renderItem={renderItem}
+      keyExtractor={(item, index) => index.toString()}
+      showsVerticalScrollIndicator={true}
+      showsHorizontalScrollIndicator={true}
+    />
+  );
+};
 
-const $root: ViewStyle = {
-  flex: 1,
-}
+const styles = StyleSheet.create({
+  itemContainerFlatListContent: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  listFlexBox: {
+    flex: 1,
+    alignSelf: 'stretch',
+    width: '100%',
+    maxWidth: '100%',
+  },
+  deleteButton: {
+    backgroundColor: 'red',
+    color: 'white',
+    textAlign: 'center',
+    height: '100%',
+    width: '100%',
+    lineHeight: 70, // adjust this to center text vertically
+  },
+});
