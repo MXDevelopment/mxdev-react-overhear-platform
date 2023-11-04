@@ -1,11 +1,14 @@
-import { Platform } from "react-native";
+// TODO: write documentation about fonts and typography along with guides on how to add custom fonts in own
+// markdown file and add links from here
+
+import { Platform } from "react-native"
 import {
   SpaceGrotesk_300Light as spaceGroteskLight,
   SpaceGrotesk_400Regular as spaceGroteskRegular,
   SpaceGrotesk_500Medium as spaceGroteskMedium,
   SpaceGrotesk_600SemiBold as spaceGroteskSemiBold,
   SpaceGrotesk_700Bold as spaceGroteskBold,
-} from "@expo-google-fonts/space-grotesk";
+} from "@expo-google-fonts/space-grotesk"
 import * as Font from 'expo-font';
 
 // Pre-load the custom font 
@@ -59,7 +62,7 @@ const fonts = {
     normal: "SIFONN_PRO",
     outline: "SIFONN_BASIC_OUTLINE"
   },
-};
+}
 
 export const typography = {
   /**
@@ -78,8 +81,8 @@ export const typography = {
    * Lets get fancy with a monospace font!
    */
   code: Platform.select({ ios: fonts.courier, android: fonts.monospace }),
-  /**
+   /**
    * The custom font.
    */
-  custom: fonts.SIFONN_PRO,
-};
+   custom: fonts.SIFONN_PRO,
+}

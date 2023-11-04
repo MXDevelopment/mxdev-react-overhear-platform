@@ -7,10 +7,10 @@ import {
 import { isRTL } from "../i18n"
 import { colors, spacing } from "../theme"
 import { useSafeAreaInsetsStyle } from "../utils/useSafeAreaInsetsStyle"
+import { AppStackScreenProps } from "app/navigators"
 
 // Import External Assets on To Home Screen
 const welcomeFace = require("../../assets/overhear-assets/images/polygon-21.png")
-
 const welcomeLogo = require("../../assets/overhear-assets/images/ovhlogoartboard12x15.png")
 
 export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeScreen(
@@ -48,7 +48,7 @@ const $topContainer: ViewStyle = {
   flexGrow: 1,
   flexBasis: "57%",
   justifyContent: "center",
-  paddingHorizontal: spacing.large,
+  paddingHorizontal: spacing.lg,
 }
 
 const $bottomContainer: ViewStyle = {
@@ -58,13 +58,13 @@ const $bottomContainer: ViewStyle = {
   backgroundColor: colors.palette.neutral100,
   borderTopLeftRadius: 16,
   borderTopRightRadius: 16,
-  paddingHorizontal: spacing.large,
+  paddingHorizontal: spacing.lg,
   justifyContent: "space-around",
 }
 const $welcomeLogo: ImageStyle = {
   height: 88,
   width: "100%",
-  marginBottom: spacing.huge,
+  marginBottom: spacing.xxl,
 }
 
 const $welcomeFace: ImageStyle = {
@@ -77,6 +77,5 @@ const $welcomeFace: ImageStyle = {
 }
 
 const $welcomeHeading: TextStyle = {
-  marginBottom: spacing.medium,
-  textAlign: 'center'
+  marginBottom: spacing.md,
 }

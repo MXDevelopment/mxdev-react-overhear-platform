@@ -1,30 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useColorScheme } from "react-native";
 import { DarkTheme, DefaultTheme, NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack";
 import { observer } from "mobx-react-lite";
-import { StackScreenProps } from "@react-navigation/stack";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import Config from "../config";
-import { TutorialScreen } from "../screens/TutorialScreen";
+import * as Screens from "app/screens";
 import TabNavigator from "./TabNavigator";
+import { navigationRef, useBackButtonHandler } from "./navigationUtilities";
 
 export type AppStackParamList = {
   TabNavigator: undefined;
   Tutorial: undefined;
 };
 
-export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreenProps<AppStackParamList, T>;
-
 const exitRoutes = Config.exitRoutes;
+
+export type AppStackScreenProps<T extends keyof AppStackParamList> = NativeStackScreenProps<AppStackParamList, T>;
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
-interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
-
-export const AppNavigator: React.FC<NavigationProps> = observer(function AppNavigator(props: NavigationProps) {
-  const colorScheme = useColorScheme();
+const AppStack = observer(function AppStack() {
   const [initialRouteName, setInitialRouteName] = useState<keyof AppStackParamList | null>(null); // Default value
 
   useEffect(() => {
@@ -51,16 +47,32 @@ export const AppNavigator: React.FC<NavigationProps> = observer(function AppNavi
   }
 
   return (
-    <NavigationContainer theme={colorScheme === "dark" ? DarkTheme : DefaultTheme} {...props}>
-      <Stack.Navigator
-        initialRouteName={initialRouteName}
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="Tutorial" component={TutorialScreen} />
-        <Stack.Screen name="TabNavigator" component={TabNavigator} />
-      </Stack.Navigator>
+    <Stack.Navigator
+  initialRouteName={initialRouteName}
+  screenOptions={{
+    headerShown: false,
+  }}
+>
+  <Stack.Screen name="Tutorial" component={Screens.TutorialScreen} />
+  <Stack.Screen name="TabNavigator" component={TabNavigator} />
+</Stack.Navigator>
+  );
+});
+
+export interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
+
+export const AppNavigator = observer(function AppNavigator(props: NavigationProps) {
+  const colorScheme = useColorScheme();
+
+  useBackButtonHandler((routeName) => exitRoutes.includes(routeName));
+
+  return (
+    <NavigationContainer
+      ref={navigationRef}
+      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+      {...props}
+    >
+      <AppStack />
     </NavigationContainer>
   );
 });

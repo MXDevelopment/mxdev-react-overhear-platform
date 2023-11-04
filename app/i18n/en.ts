@@ -19,8 +19,16 @@ const en = {
     resetDetailsMessage: "Need to Sign Up?",
     signUpMessage: "New User? Register & Signup Here"
   },
-
-
+  loginScreen: {
+    signIn: "Sign In",
+    enterDetails: "Enter your details",
+    hint: "Hint: The password is ign1teIsAwes0m3",
+    emailFieldLabel: "Email",
+    emailFieldPlaceholder: "Enter your email",
+    passwordFieldLabel: "Password",
+    passwordFieldPlaceholder: "Enter your password",
+    tapToSignIn: "Tap to Sign In",
+  },
   errorScreen: {
     title: "Something went wrong!",
     friendlySubtitle:

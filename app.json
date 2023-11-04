@@ -1,10 +1,10 @@
 {
-  "name": "NoDemoCodeTestWithDeps",
-  "displayName": "NoDemoCodeTestWithDeps",
+  "name": "NewProjectName",
+  "displayName": "NewProjectName",
   "expo": {
-    "name": "NoDemoCodeTestWithDeps",
-    "slug": "NoDemoCodeTestWithDeps",
-    "scheme": "nodemocodetestwithdeps",
+    "name": "NewProjectName",
+    "slug": "NewProjectName",
+    "scheme": "newprojectname",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/app-icon-all.png",
@@ -22,7 +22,7 @@
     ],
     "android": {
       "icon": "./assets/images/app-icon-android-legacy.png",
-      "package": "com.nodemocodetestwithdeps",
+      "package": "com.overhearapp",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/app-icon-android-adaptive-foreground.png",
         "backgroundImage": "./assets/images/app-icon-android-adaptive-background.png"
@@ -36,7 +36,7 @@
     "ios": {
       "icon": "./assets/images/app-icon-ios.png",
       "supportsTablet": true,
-      "bundleIdentifier": "com.nodemocodetestwithdeps",
+      "bundleIdentifier": "com.overhearapp",
       "splash": {
         "image": "./assets/images/splash-logo-ios-mobile.png",
         "tabletImage": "./assets/images/splash-logo-ios-tablet.png",
@@ -52,10 +52,8 @@
         "backgroundColor": "#191015"
       }
     },
-    "extra": {
-      "eas": {
-        "projectId": "362f8111-8f9b-44da-9104-dfbb920ae3b1"
-      }
-    }
+    "plugins": [
+      "expo-localization"
+    ]
   }
 }

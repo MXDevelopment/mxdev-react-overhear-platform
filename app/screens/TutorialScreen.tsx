@@ -1,7 +1,7 @@
 
 import React, { useState, useRef } from "react";
 import { View, Image, StyleSheet, FlatList, TouchableOpacity, Dimensions } from "react-native";
-import { StackScreenProps } from '@react-navigation/stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import Tutorial1 from "../components/Tutorial1";
 import Tutorial2 from "../components/Tutorial2";
 import Tutorial3 from "../components/Tutorial3";
@@ -18,7 +18,7 @@ const TutorialsData = [
   { id: '5', Component: Tutorial5 },
 ];
 
-type TutorialScreenProps = StackScreenProps<AppStackParamList, "Tutorial">;
+type TutorialScreenProps = NativeStackScreenProps<AppStackParamList, "Tutorial">;
 
 export const TutorialScreen: React.FC<TutorialScreenProps> = ({ navigation }) => {
   const [activeIndex, setActiveIndex] = useState(0);

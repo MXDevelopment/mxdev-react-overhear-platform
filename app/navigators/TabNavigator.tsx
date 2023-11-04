@@ -6,7 +6,6 @@ import { WelcomeScreen } from "../screens/WelcomeScreen";
 import { OverhearScreen } from "../screens/OverhearScreen";
 import { LibraryScreen } from "../screens/LibraryScreen";
 import { SettingScreen } from "../screens/SettingScreen";
-import { TestScreen } from "../screens/TestScreen";
 import { SignInScreen } from "../screens/SignInScreen";
 
 const libraryIcon = require("../screens/anima-imports/images/library-24-20-px.png");
@@ -22,7 +21,6 @@ export type NavigatorParamList = {
   Overhear: undefined;
   Library: undefined;
   Setting: undefined;
-  Test: undefined;
 };
 
 const Tab = createBottomTabNavigator<NavigatorParamList>();
@@ -86,15 +84,6 @@ const TabNavigator: React.FC = () => {
         options={{
           tabBarIcon: ({ focused }) => {
             return <Image source={settingsIcon} />;
-          },
-        }}
-      />
-      <Tab.Screen
-        name="Test"
-        component={TestScreen}
-        options={{
-          tabBarIcon: ({ focused }) => {
-            return <Image source={mailIcon} />;
           },
         }}
       />
