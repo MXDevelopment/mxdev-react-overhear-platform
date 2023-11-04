@@ -11,6 +11,7 @@ import { ViewStyle } from "react-native"
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AppStackScreenProps } from "../navigators"
 import { Screen, Text } from "../components"
+import MapContainer from "app/components/MapContainer";
 // import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "../models"
 
@@ -31,7 +32,8 @@ export const OverhearScreen: FC<NativeStackScreenProps<AppStackScreenProps, "Ove
   // const navigation = useNavigation()
   return (
     <Screen style={{...$root,  flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Overhear</Text>
+        
+        <MapContainer></MapContainer>
     </Screen>
   )
 })

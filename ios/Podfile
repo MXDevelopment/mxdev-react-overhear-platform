@@ -40,7 +40,7 @@ elsif podfile_properties.key?('ios.flipper') then
   end
 end
 
-target 'NewProjectName' do
+target 'NoDemoCodeTestWithDeps' do
   use_expo_modules!
   config = use_native_modules!
 
@@ -64,7 +64,7 @@ target 'NewProjectName' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'NewProjectNameTests' do
+  target 'NoDemoCodeTestWithDepsTests' do
     inherit! :complete
     # Pods for testing
   end

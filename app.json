@@ -1,10 +1,10 @@
 {
-  "name": "NewProjectName",
-  "displayName": "NewProjectName",
+  "name": "no-demo-code-test-with-deps",
+  "displayName": "no-demo-code-test-with-deps",
   "expo": {
-    "name": "NewProjectName",
-    "slug": "NewProjectName",
-    "scheme": "newprojectname",
+    "name": "no-demo-code-test-with-deps",
+    "slug": "no-demo-code-test-with-deps",
+    "scheme": "no-demo-code-test-with-deps",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/app-icon-all.png",

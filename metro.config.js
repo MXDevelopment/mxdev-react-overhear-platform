@@ -1,4 +1,4 @@
-const { getDefaultConfig } = require("metro-config")
+const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
 const { getDefaultConfig: getDefaultExpoConfig } = require("@expo/metro-config")
 
 let metroConfig
