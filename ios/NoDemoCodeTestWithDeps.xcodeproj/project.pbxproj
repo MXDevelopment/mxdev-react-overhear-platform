@@ -7,15 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* NewProjectNameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* NewProjectNameTests.m */; };
-		0C80B921A6F3F58F76C31292 /* libPods-NewProjectName.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-NewProjectName.a */; };
+		00E356F31AD99517003FC87E /* NoDemoCodeTestWithDepsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* NoDemoCodeTestWithDepsTests.m */; };
+		0C80B921A6F3F58F76C31292 /* libPods-NoDemoCodeTestWithDeps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-NoDemoCodeTestWithDeps.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2215ACBC1E62C44583DB69A9 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AFED2E09CC2E86D1338C0F /* ExpoModulesProvider.swift */; };
 		400EB2C1E1807E6CBC68B7AB /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951E59D51E504BC9C5F46169 /* ExpoModulesProvider.swift */; };
-		7699B88040F8A987B510C191 /* libPods-NewProjectName-NewProjectNameTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-NewProjectName-NewProjectNameTests.a */; };
+		42E4500EE1CEA3BC5E57ADC1 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056B6AAF0443942AC251E084 /* ExpoModulesProvider.swift */; };
+		7699B88040F8A987B510C191 /* libPods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests.a */; };
 		BE406F562862D73000A81E39 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE406F552862D73000A81E39 /* BootSplash.storyboard */; };
+		D6360709C69C594E5B5A7705 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FD4B684C25F8635B57371 /* ExpoModulesProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,21 +31,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* NewProjectNameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewProjectNameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* NoDemoCodeTestWithDepsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NoDemoCodeTestWithDepsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* NewProjectNameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewProjectNameTests.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* NoDemoCodeTestWithDepsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoDemoCodeTestWithDepsTests.m; sourceTree = "<group>"; };
+		056B6AAF0443942AC251E084 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* NewProjectName.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewProjectName.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = NewProjectName/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = NewProjectName/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = NewProjectName/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = NewProjectName/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = NewProjectName/main.m; sourceTree = "<group>"; };
-		19F6CBCC0A4E27FBF8BF4A61 /* libPods-NewProjectName-NewProjectNameTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NewProjectName-NewProjectNameTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B4392A12AC88292D35C810B /* Pods-NewProjectName.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewProjectName.debug.xcconfig"; path = "Target Support Files/Pods-NewProjectName/Pods-NewProjectName.debug.xcconfig"; sourceTree = "<group>"; };
-		5709B34CF0A7D63546082F79 /* Pods-NewProjectName.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewProjectName.release.xcconfig"; path = "Target Support Files/Pods-NewProjectName/Pods-NewProjectName.release.xcconfig"; sourceTree = "<group>"; };
-		5B7EB9410499542E8C5724F5 /* Pods-NewProjectName-NewProjectNameTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewProjectName-NewProjectNameTests.debug.xcconfig"; path = "Target Support Files/Pods-NewProjectName-NewProjectNameTests/Pods-NewProjectName-NewProjectNameTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-NewProjectName.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NewProjectName.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		89C6BE57DB24E9ADA2F236DE /* Pods-NewProjectName-NewProjectNameTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewProjectName-NewProjectNameTests.release.xcconfig"; path = "Target Support Files/Pods-NewProjectName-NewProjectNameTests/Pods-NewProjectName-NewProjectNameTests.release.xcconfig"; sourceTree = "<group>"; };
+		19F6CBCC0A4E27FBF8BF4A61 /* libPods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B4392A12AC88292D35C810B /* Pods-NoDemoCodeTestWithDeps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoDemoCodeTestWithDeps.debug.xcconfig"; path = "Target Support Files/Pods-NoDemoCodeTestWithDeps/Pods-NoDemoCodeTestWithDeps.debug.xcconfig"; sourceTree = "<group>"; };
+		5709B34CF0A7D63546082F79 /* Pods-NoDemoCodeTestWithDeps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoDemoCodeTestWithDeps.release.xcconfig"; path = "Target Support Files/Pods-NoDemoCodeTestWithDeps/Pods-NoDemoCodeTestWithDeps.release.xcconfig"; sourceTree = "<group>"; };
+		5B7EB9410499542E8C5724F5 /* Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests.debug.xcconfig"; path = "Target Support Files/Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests/Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5DCACB8F33CDC322A6C60F78 /* libPods-NoDemoCodeTestWithDeps.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NoDemoCodeTestWithDeps.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		89C6BE57DB24E9ADA2F236DE /* Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests.release.xcconfig"; path = "Target Support Files/Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests/Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests.release.xcconfig"; sourceTree = "<group>"; };
+		8E7FD4B684C25F8635B57371 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-NoDemoCodeTestWithDeps/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		951E59D51E504BC9C5F46169 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-NewProjectName/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		BE406F552862D73000A81E39 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = NewProjectName/BootSplash.storyboard; sourceTree = "<group>"; };
 		D5AFED2E09CC2E86D1338C0F /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-NewProjectName-NewProjectNameTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
@@ -55,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7699B88040F8A987B510C191 /* libPods-NewProjectName-NewProjectNameTests.a in Frameworks */,
+				7699B88040F8A987B510C191 /* libPods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,20 +67,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-NewProjectName.a in Frameworks */,
+				0C80B921A6F3F58F76C31292 /* libPods-NoDemoCodeTestWithDeps.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* NewProjectNameTests */ = {
+		00E356EF1AD99517003FC87E /* NoDemoCodeTestWithDepsTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* NewProjectNameTests.m */,
+				00E356F21AD99517003FC87E /* NoDemoCodeTestWithDepsTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = NewProjectNameTests;
+			path = NoDemoCodeTestWithDepsTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -87,7 +91,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* NewProjectName */ = {
+		13B07FAE1A68108700A75B9A /* NoDemoCodeTestWithDeps */ = {
 			isa = PBXGroup;
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -97,15 +101,15 @@
 				BE406F552862D73000A81E39 /* BootSplash.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = NewProjectName;
+			name = NoDemoCodeTestWithDeps;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-NewProjectName.a */,
-				19F6CBCC0A4E27FBF8BF4A61 /* libPods-NewProjectName-NewProjectNameTests.a */,
+				5DCACB8F33CDC322A6C60F78 /* libPods-NoDemoCodeTestWithDeps.a */,
+				19F6CBCC0A4E27FBF8BF4A61 /* libPods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -113,18 +117,19 @@
 		547A8E9E9663ECB3355FB756 /* ExpoModulesProviders */ = {
 			isa = PBXGroup;
 			children = (
-				6289853FD5D818F15D17248E /* NewProjectName */,
-				E4DC8A9EFE6F9C5F90DD96E4 /* NewProjectNameTests */,
+				6289853FD5D818F15D17248E /* NoDemoCodeTestWithDeps */,
+				E4DC8A9EFE6F9C5F90DD96E4 /* NoDemoCodeTestWithDepsTests */,
 			);
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
-		6289853FD5D818F15D17248E /* NewProjectName */ = {
+		6289853FD5D818F15D17248E /* NoDemoCodeTestWithDeps */ = {
 			isa = PBXGroup;
 			children = (
 				951E59D51E504BC9C5F46169 /* ExpoModulesProvider.swift */,
+				8E7FD4B684C25F8635B57371 /* ExpoModulesProvider.swift */,
 			);
-			name = NewProjectName;
+			name = NoDemoCodeTestWithDeps;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -137,9 +142,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* NewProjectName */,
+				13B07FAE1A68108700A75B9A /* NoDemoCodeTestWithDeps */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* NewProjectNameTests */,
+				00E356EF1AD99517003FC87E /* NoDemoCodeTestWithDepsTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
@@ -154,7 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* NewProjectName.app */,
-				00E356EE1AD99517003FC87E /* NewProjectNameTests.xctest */,
+				00E356EE1AD99517003FC87E /* NoDemoCodeTestWithDepsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -162,28 +167,29 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B4392A12AC88292D35C810B /* Pods-NewProjectName.debug.xcconfig */,
-				5709B34CF0A7D63546082F79 /* Pods-NewProjectName.release.xcconfig */,
-				5B7EB9410499542E8C5724F5 /* Pods-NewProjectName-NewProjectNameTests.debug.xcconfig */,
-				89C6BE57DB24E9ADA2F236DE /* Pods-NewProjectName-NewProjectNameTests.release.xcconfig */,
+				3B4392A12AC88292D35C810B /* Pods-NoDemoCodeTestWithDeps.debug.xcconfig */,
+				5709B34CF0A7D63546082F79 /* Pods-NoDemoCodeTestWithDeps.release.xcconfig */,
+				5B7EB9410499542E8C5724F5 /* Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests.debug.xcconfig */,
+				89C6BE57DB24E9ADA2F236DE /* Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		E4DC8A9EFE6F9C5F90DD96E4 /* NewProjectNameTests */ = {
+		E4DC8A9EFE6F9C5F90DD96E4 /* NoDemoCodeTestWithDepsTests */ = {
 			isa = PBXGroup;
 			children = (
 				D5AFED2E09CC2E86D1338C0F /* ExpoModulesProvider.swift */,
+				056B6AAF0443942AC251E084 /* ExpoModulesProvider.swift */,
 			);
-			name = NewProjectNameTests;
+			name = NoDemoCodeTestWithDepsTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* NewProjectNameTests */ = {
+		00E356ED1AD99517003FC87E /* NoDemoCodeTestWithDepsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "NewProjectNameTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "NoDemoCodeTestWithDepsTests" */;
 			buildPhases = (
 				A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */,
 				61D8739874B88C4C0A671BE8 /* [Expo] Configure project */,
@@ -198,14 +204,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = NewProjectNameTests;
+			name = NoDemoCodeTestWithDepsTests;
 			productName = NewProjectNameTests;
-			productReference = 00E356EE1AD99517003FC87E /* NewProjectNameTests.xctest */;
+			productReference = 00E356EE1AD99517003FC87E /* NoDemoCodeTestWithDepsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* NewProjectName */ = {
+		13B07F861A680F5B00A75B9A /* NoDemoCodeTestWithDeps */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "NewProjectName" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "NoDemoCodeTestWithDeps" */;
 			buildPhases = (
 				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -221,7 +227,7 @@
 			);
 			dependencies = (
 			);
-			name = NewProjectName;
+			name = NoDemoCodeTestWithDeps;
 			productName = NewProjectName;
 			productReference = 13B07F961A680F5B00A75B9A /* NewProjectName.app */;
 			productType = "com.apple.product-type.application";
@@ -243,7 +249,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "NewProjectName" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "NoDemoCodeTestWithDeps" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -256,8 +262,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* NewProjectName */,
-				00E356ED1AD99517003FC87E /* NewProjectNameTests */,
+				13B07F861A680F5B00A75B9A /* NoDemoCodeTestWithDeps */,
+				00E356ED1AD99517003FC87E /* NoDemoCodeTestWithDepsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -304,15 +310,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NewProjectName/Pods-NewProjectName-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-NoDemoCodeTestWithDeps/Pods-NoDemoCodeTestWithDeps-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NewProjectName/Pods-NewProjectName-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-NoDemoCodeTestWithDeps/Pods-NoDemoCodeTestWithDeps-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NewProjectName/Pods-NewProjectName-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NoDemoCodeTestWithDeps/Pods-NoDemoCodeTestWithDeps-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		61D8739874B88C4C0A671BE8 /* [Expo] Configure project */ = {
@@ -332,7 +338,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-NewProjectName-NewProjectNameTests/expo-configure-project.sh\"\n";
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests/expo-configure-project.sh\"\n";
 		};
 		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -349,7 +355,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NewProjectName-NewProjectNameTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -371,7 +377,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NewProjectName-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-NoDemoCodeTestWithDeps-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -384,15 +390,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NewProjectName-NewProjectNameTests/Pods-NewProjectName-NewProjectNameTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests/Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NewProjectName-NewProjectNameTests/Pods-NewProjectName-NewProjectNameTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests/Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NewProjectName-NewProjectNameTests/Pods-NewProjectName-NewProjectNameTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests/Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D25AA5CC3F98535C69C6D419 /* [Expo] Configure project */ = {
@@ -412,7 +418,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-NewProjectName/expo-configure-project.sh\"\n";
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-NoDemoCodeTestWithDeps/expo-configure-project.sh\"\n";
 		};
 		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -420,15 +426,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NewProjectName/Pods-NewProjectName-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-NoDemoCodeTestWithDeps/Pods-NoDemoCodeTestWithDeps-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NewProjectName/Pods-NewProjectName-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-NoDemoCodeTestWithDeps/Pods-NoDemoCodeTestWithDeps-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NewProjectName/Pods-NewProjectName-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NoDemoCodeTestWithDeps/Pods-NoDemoCodeTestWithDeps-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */ = {
@@ -437,15 +443,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NewProjectName-NewProjectNameTests/Pods-NewProjectName-NewProjectNameTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests/Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NewProjectName-NewProjectNameTests/Pods-NewProjectName-NewProjectNameTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests/Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NewProjectName-NewProjectNameTests/Pods-NewProjectName-NewProjectNameTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests/Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -474,8 +480,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* NewProjectNameTests.m in Sources */,
+				00E356F31AD99517003FC87E /* NoDemoCodeTestWithDepsTests.m in Sources */,
 				2215ACBC1E62C44583DB69A9 /* ExpoModulesProvider.swift in Sources */,
+				42E4500EE1CEA3BC5E57ADC1 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +493,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				400EB2C1E1807E6CBC68B7AB /* ExpoModulesProvider.swift in Sources */,
+				D6360709C69C594E5B5A7705 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,7 +502,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* NewProjectName */;
+			target = 13B07F861A680F5B00A75B9A /* NoDemoCodeTestWithDeps */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -502,7 +510,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-NewProjectName-NewProjectNameTests.debug.xcconfig */;
+			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -532,7 +540,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-NewProjectName-NewProjectNameTests.release.xcconfig */;
+			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-NoDemoCodeTestWithDeps-NoDemoCodeTestWithDepsTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -559,7 +567,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-NewProjectName.debug.xcconfig */;
+			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-NoDemoCodeTestWithDeps.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -586,7 +594,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-NewProjectName.release.xcconfig */;
+			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-NoDemoCodeTestWithDeps.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -767,7 +775,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "NewProjectNameTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "NoDemoCodeTestWithDepsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -776,7 +784,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "NewProjectName" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "NoDemoCodeTestWithDeps" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -785,7 +793,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "NewProjectName" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "NoDemoCodeTestWithDeps" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
