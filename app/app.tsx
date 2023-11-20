@@ -29,7 +29,7 @@ import * as storage from "./utils/storage"
 import { customFontsToLoad } from "./theme"
 import Config from "./config"
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-
+import { firebase } from '@react-native-firebase/app';
 
 export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
 

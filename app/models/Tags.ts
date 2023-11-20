@@ -1,0 +1,3 @@
+interface Tags {
+    locationTags: string[];
+}

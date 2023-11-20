@@ -20,9 +20,24 @@ The Ignite boilerplate project's structure will look similar to this:
 
 ```
 ignite-project
+├── .expo
+|   ├── devices.json
+|   ├── packager-info.json
+|   ├── README.md
+|   ├── settings.json
+├── android
+│   ├── app
+│   ├── build.gradle
+│   ├── gradle
+│   ├── gradle.properties
+│   ├── gradlew
+│   ├── gradlew.bat
+│   ├── keystores
+│   └── settings.gradle
 ├── app
 │   ├── components
 │   ├── config
+|   ├── devtools
 │   ├── i18n
 │   ├── models
 │   ├── navigators
@@ -34,20 +49,9 @@ ignite-project
 ├── assets
 │   ├── icons
 │   └── images
-├── test
-│   ├── __snapshots__
-│   ├── mockFile.ts
-│   └── setup.ts
-├── README.md
-├── android
-│   ├── app
-│   ├── build.gradle
-│   ├── gradle
-│   ├── gradle.properties
-│   ├── gradlew
-│   ├── gradlew.bat
-│   ├── keystores
-│   └── settings.gradle
+├── bin
+|   ├── postInstall
+|   ├── setup
 ├── ignite
 │   └── templates
 |       |── app-icon
@@ -55,14 +59,26 @@ ignite-project
 │       ├── model
 │       ├── navigator
 │       └── screen
-├── index.js
 ├── ios
 │   ├── IgniteProject
 │   ├── IgniteProject-tvOS
 │   ├── IgniteProject-tvOSTests
 │   ├── IgniteProject.xcodeproj
 │   └── IgniteProjectTests
+├── test
+│   ├── __snapshots__
+│   ├── mockFile.ts
+│   └── setup.ts
+├── README.md
+├── App.js
+├── app.json
+├── babel.config.js
+├── jest.config.js
+├── metro.config.js
+├── tsconfig.js
+├── webpack.config.js
 ├── .env
+├── index.js
 └── package.json
 
 ```
