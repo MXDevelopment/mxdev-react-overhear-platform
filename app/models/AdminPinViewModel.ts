@@ -1,7 +1,7 @@
 // Import necessary types
 import { Location, GeoPointModel } from './Location'; // Adjust the path as needed
 import { CollectionLog } from './CollectionLog'; // Adjust the path as needed
-import { File } from './File'; // Adjust the path as needed
+import { File } from './RecordingFile'; // Adjust the path as needed
 import { Ownership } from './Ownership'; // Adjust the path as needed
 import { Qr } from './Qr'; // Adjust the path as needed
 import { RecordingTags } from './RecordingTags'; // Adjust the path as needed

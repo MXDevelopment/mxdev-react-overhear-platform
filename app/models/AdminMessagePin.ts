@@ -1,5 +1,5 @@
 import { CollectionLog } from './CollectionLog';
-import { File } from './File';
+import { File } from './RecordingFile';
 import { Ownership } from './Ownership'
 import { Location } from './Location'
 import { Qr } from './Qr'

@@ -1,4 +1,4 @@
-export class File {
+export class RecordingFile {
     audioLength?: string;
     description?: string;
     recordingPath?: string;
