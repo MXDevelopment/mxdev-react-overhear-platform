@@ -1,67 +1,50 @@
+
 import Realm from 'realm';
-import { UserViewModel } from '../models'; // Update with correct import path
-import UserManager from './UserManager'; // Ensure correct import path
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+import { UserViewModel } from './UserViewModel';
+import { UserRealm } from './UserRealm'
 
 class UserDao {
-  static shared = new UserDao();
-
+  private static instance: UserDao;
   private realm: Realm;
 
-  constructor() {
-    this.realm = new Realm({ schema: [UserRealm.schema] });
+  private constructor() {
+    this.realm = new Realm({ schema: [UserRealm] }); 
   }
 
-  saveCurrentUser(user: UserViewModel): void {
-    this.deleteCurrentUser();
-    const userRealm = new UserRealm(user);
-    this.realm.write(() => {
-      this.realm.create(UserRealm.schema.name!, userRealm, Realm.UpdateMode.Modified);
-    });
-  }
-
-  saveCurrentUserWithFB(user: UserViewModel): void {
-    this.deleteCurrentUser();
-    const userRealm = new UserRealm(user);
-    this.realm.write(() => {
-      this.realm.create(UserRealm.schema.name!, userRealm, Realm.UpdateMode.Modified);
-    });
-
-    const currentAuthUser = auth().currentUser;
-    if (currentAuthUser && !currentAuthUser.isAnonymous) {
-      UserManager.sharedManager.updateUser(user);
+  public static get shared(): UserDao {
+    if (!UserDao.instance) {
+      UserDao.instance = new UserDao();
     }
+    return UserDao.instance;
   }
 
-  getCurrentUser(): UserViewModel | null {
-    const user = this.realm.objects<UserRealm>(UserRealm.schema.name!)[0];
-    return user ? new UserViewModel(user) : null;
-  }
-
-  deleteCurrentUser(): void {
-    const users = this.realm.objects(UserRealm.schema.name!);
+  saveCurrentUser = async (user: UserViewModel): Promise<void> => {
+    this.deleteCurrentUser();
     this.realm.write(() => {
-      this.realm.delete(users);
+      this.realm.create('UserRealm', user, Realm.UpdateMode.Modified);
     });
-  }
-}
-
-// Define UserRealm schema here (adjust the fields as needed)
-class UserRealm {
-  static schema: Realm.ObjectSchema = {
-    name: 'UserRealm',
-    properties: {
-      // Define the properties that match UserViewModel here
-      // Example: username: 'string?',
-      // Ensure the types match your UserViewModel properties
-    },
   };
 
-  // Constructor to initialize UserRealm object from UserViewModel
-  constructor(user: UserViewModel) {
-    // Map UserViewModel properties to UserRealm properties here
-    // Example: this.username = user.username;
-  }
+  saveCurrentUserWithFB = async (user: UserViewModel): Promise<void> => {
+    this.saveCurrentUser(user);
+    const currentAuthUser = auth().currentUser;
+    if (currentAuthUser && !currentAuthUser.isAnonymous) {
+      firestore().collection('users').doc(currentAuthUser.uid).set(user); // Adapt this based on your Firestore structure
+    }
+  };
+
+  getCurrentUser = (): UserViewModel | null => {
+    const user = this.realm.objects('UserRealm')[0];
+    return user ? new UserViewModel(user) : null;
+  };
+
+  deleteCurrentUser = (): void => {
+    this.realm.write(() => {
+      this.realm.deleteAll();
+    });
+  };
 }
 
 export default UserDao;

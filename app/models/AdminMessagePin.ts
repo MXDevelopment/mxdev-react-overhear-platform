@@ -3,6 +3,7 @@ import { File } from './File';
 import { Ownership } from './Ownership'
 import { Location } from './Location'
 import { Qr } from './Qr'
+import { AdminPinViewModel } from './AdminPinViewModel';
 
 interface AdminMessagePin {
     collectionLog?: CollectionLog; 

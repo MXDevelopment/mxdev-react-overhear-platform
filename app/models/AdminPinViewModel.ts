@@ -3,7 +3,7 @@ import { Location, GeoPointModel } from './Location'; // Adjust the path as need
 import { CollectionLog } from './CollectionLog'; // Adjust the path as needed
 import { File } from './File'; // Adjust the path as needed
 import { Ownership } from './Ownership'; // Adjust the path as needed
-import { Qr } from './QR'; // Adjust the path as needed
+import { Qr } from './Qr'; // Adjust the path as needed
 import { RecordingTags } from './RecordingTags'; // Adjust the path as needed
 import { Author } from './Author'; // Adjust the path as needed
 import { AdminMessagePin } from './AdminMessagePin';
@@ -47,7 +47,6 @@ export class AdminPinViewModel {
         this.location = pin?.location;
         this.ownership = pin?.ownership;
         this.qr = pin?.qr;
-        this.tags = pin?.tags;
         this.isAvailable = pin?.isAvailable;
         this.key = pin?.pinKey;
         this.title = pin?.file?.title;

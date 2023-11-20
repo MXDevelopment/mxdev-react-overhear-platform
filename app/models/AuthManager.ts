@@ -1,109 +1,97 @@
+// AuthManager.ts
+// Overhear
+// Created by Andrew Graham on 10/10/2017.
+// © 2017 Overhear. All rights reserved.
+
 import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import UserManager from './UserManager'; // Ensure correct import path
-import UserDao from './UserDao'; // 
-import { User } from './User'; 
+import UserManager from './UserManager'; // Import or define UserManager
+import UserDao from './UserDao'; // Import or define UserDao
+import { User } from './User'; // Define your models
 import { UserViewModel } from './UserViewModel'
+import { Project } from './Project';
 
 class AuthManager {
-    static shared = new AuthManager();
-    static justLoggedIn = true;
-    static fcmToken: string | null = null;
+  static justLoggedIn = true;
+  private static instance: AuthManager;
 
-    async selectProject(projectName: string) {
-        await AsyncStorage.setItem('selectedProject', projectName);
+  private constructor() {}
+
+  public static get shared(): AuthManager {
+    if (!AuthManager.instance) {
+      AuthManager.instance = new AuthManager();
     }
+    return AuthManager.instance;
+  }
 
-    async getPreviousSelectedProjectKey(): Promise<string | null> {
-        return await AsyncStorage.getItem('selectedProject');
-    }
+  selectProject = async (project: Project): Promise<void> => {
+    await AsyncStorage.setItem('selectedProject', project.projectName);
+  };
 
-    async isLoggedInOnce(): Promise<boolean> {
-        const isLoggedIn = await AsyncStorage.getItem('isLoggedInOnce');
-        return isLoggedIn === 'true';
-    }
+  getPreviousSelectedProjectKey = async (): Promise<string | null> => {
+    return await AsyncStorage.getItem('selectedProject');
+  };
 
-    async setLoggedInOnce() {
-        await AsyncStorage.setItem('isLoggedInOnce', 'true');
-    }
+  isLoggedInOnce = async (): Promise<boolean> => {
+    const loggedInOnce = await AsyncStorage.getItem('isLoggedInOnce');
+    return loggedInOnce === 'true';
+  };
 
-    static async setFcmToken(token: string) {
-        AuthManager.fcmToken = token;
-        const currentUser = auth().currentUser;
-        if (currentUser && AuthManager.fcmToken) {
-            UserManager.sharedManager.registerFCMToken(currentUser, AuthManager.fcmToken);
-        }
-    }
+  setLoggedInOnce = async (): Promise<void> => {
+    await AsyncStorage.setItem('isLoggedInOnce', 'true');
+  };
 
-    async checkAuthentication(completion: (isLoggedIn: boolean | null) => void) {
-        console.log("No auth check yet");
-        const currentAuthUser = auth().currentUser;
-        const currentDBUser = await UserDao.shared.getCurrentUser();
+  static fcmToken: string | null = null;
 
-        if (!currentAuthUser && !currentDBUser) {
-            this.anonymousSignIn(loggedIn => {
-                completion(loggedIn);
-                if (loggedIn) {
-                    console.log("Anonymous login done");
-                }
-            });
-        } else if (currentAuthUser) {
-            UserManager.sharedManager.getCurrentUser(currentAuthUser.uid, userReturn => {
-                if (userReturn) {
-                    UserDao.shared.saveCurrentUser(userReturn);
-                    completion(true);
-                } else {
-                    const newUser = new User({ userKey: currentAuthUser.uid, username: this.getUniqueID(), ... });
-                    UserDao.shared.saveCurrentUserWithFB(newUser);
-                    completion(true);
-                }
-            });
+  checkAuthentication = async (completion: (loggedIn: boolean) => void): Promise<void> => {
+    const currentAuthUser = auth().currentUser;
+    const currentDBUser = UserDao.shared.getCurrentUser();
+
+    if (!currentAuthUser && !currentDBUser) {
+      await this.anonymousSignIn(completion);
+    } else if (currentAuthUser) {
+      UserManager.getCurrentUser(currentAuthUser.uid, (userReturn: UserViewModel | null) => {
+        if (userReturn) {
+          UserDao.shared.saveCurrentUser(userReturn);
+          completion(true);
         } else {
-            this.anonymousSignIn(loggedIn => {
-                completion(loggedIn);
-            });
+          // Handle anonymous user
+          const user = new User(currentAuthUser.uid); // Adjust as per your model
+          UserDao.shared.saveCurrentUserWithFB(user);
+          completion(true);
         }
+      });
+    } else {
+      completion(false);
     }
+  };
 
-    async getCurrentUserFb(userId: string) {
-        UserManager.sharedManager.getCurrentUser(userId, user => {
-            if (user) {
-                UserDao.shared.saveCurrentUser(user);
-            }
-        });
+  private anonymousSignIn = async (completion: (loggedIn: boolean) => void): Promise<void> => {
+    try {
+      const authResult = await auth().signInAnonymously();
+      const user = new User(authResult.user.uid); // Adjust as per your model
+      UserDao.shared.saveCurrentUserWithFB(user);
+      completion(true);
+    } catch (error) {
+      console.error("Anonymous sign-in failed", error);
+      completion(false);
     }
+  };
 
-    private anonymousSignIn(completion: (isLoggedIn: boolean) => void) {
-        auth().signInAnonymously()
-            .then(authResult => {
-                const newUser = new User({ userKey: authResult.user.uid, username: this.getUniqueID(), ... });
-                UserDao.shared.saveCurrentUserWithFB(newUser);
-                completion(true);
-            })
-            .catch(error => {
-                console.error("Anonymous sign-in failed", error);
-                completion(false);
-            });
+  removeAnonymousUser = async (completion: (success: boolean) => void): Promise<void> => {
+    const anonymousUser = auth().currentUser;
+    if (anonymousUser?.isAnonymous) {
+      try {
+        await anonymousUser.delete();
+        completion(true);
+      } catch (error) {
+        console.error("Unable to remove anonymous user", error);
+        completion(false);
+      }
+    } else {
+      completion(true);
     }
-
-    async removeAnonymousUser(completion: (success: boolean) => void) {
-        const currentUser = auth().currentUser;
-        if (currentUser?.isAnonymous) {
-            currentUser.delete()
-                .then(() => completion(true))
-                .catch(error => {
-                    console.error("Error removing anonymous user", error);
-                    completion(false);
-                });
-        } else {
-            completion(true);
-        }
-    }
-
-    private getUniqueID(): string {
-        // Implement logic to generate a unique ID or use an external library
-        return 'unique-id'; // Placeholder
-    }
+  };
 }
 
 export default AuthManager;

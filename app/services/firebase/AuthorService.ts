@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Author } from '../../models/Author'; 
+import AuthorManager from 'app/models/AuthorManager';
 
 const MapVCConstants = {
     allAuthors: 'allAuthors'
@@ -7,7 +8,7 @@ const MapVCConstants = {
 
 export const saveAllAuthors = async () => {
     try {
-        const authors = await FirebaseManager.sharedManager.getAllAuthors(); // Adjust this line to match your actual Firebase call
+        const authors = await AuthorManager.getAllAuthors(); // Adjust this line to match your actual Firebase call
         const data = JSON.stringify(authors);
         await AsyncStorage.setItem(MapVCConstants.allAuthors, data);
     } catch (error) {
