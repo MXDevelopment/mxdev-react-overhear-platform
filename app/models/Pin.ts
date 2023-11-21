@@ -1,3 +1,4 @@
+import { ITags } from "./Tags";
 
 export class Pin {
     albumKey: string | null;
@@ -10,12 +11,12 @@ export class Pin {
     pinType: string | null;
     project: string | null;
     qrPath: string | null;
-    tags: Tags | null;
+    tags: ITags | null;
     sequentialOrderLogic: string | null;
     sequentialOrderNum: number | null;
     isDeliverPinsSequentially: boolean | null;
 
-    constructor(albumKey: string | null, pinDescription: string | null, isAvailable: boolean | null, location: Location | null, name: string | null, pinIcon: string | null, pinKey: string | null, pinType: string | null, project: string | null, qrPath: string | null, tags: Tags | null, sequentialOrderLogic: string | null, sequentialOrderNum: number | null, isDeliverPinsSequentially: boolean | null) {
+    constructor(albumKey: string | null, pinDescription: string | null, isAvailable: boolean | null, location: Location | null, name: string | null, pinIcon: string | null, pinKey: string | null, pinType: string | null, project: string | null, qrPath: string | null, tags: ITags | null, sequentialOrderLogic: string | null, sequentialOrderNum: number | null, isDeliverPinsSequentially: boolean | null) {
         this.albumKey = albumKey;
         this.pinDescription = pinDescription;
         this.isAvailable = isAvailable;

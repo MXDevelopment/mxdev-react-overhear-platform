@@ -1,21 +1,21 @@
-import firebase from '@react-native-firebase/app';
-import '@react-native-firebase/firestore';
-
-const db = firebase.firestore();
+import db from '../services/firebase/firebase'; // Import Firestore instance
+import { collection, getDocs, getDoc, doc } from 'firebase/firestore';
 
 // Define TypeScript interfaces for your album and other types as needed
 interface Album {
-  key: string;
-  // Add other album properties
+  albumKey: string;
+  name: string;
+  projectKey: string;
+  userKey: string;
 }
 
 const AlbumManager = {
   getAllAlbums: async (): Promise<Album[]> => {
     try {
-      const querySnapshot = await db.collection('albums').get();
+      const querySnapshot = await getDocs(collection(db, 'albums'));
       const albums: Album[] = [];
       querySnapshot.forEach((doc) => {
-        const album = doc.data() as Album;
+        const album = { albumKey: doc.id, ...doc.data() } as Album;
         albums.push(album);
       });
       return albums;
@@ -27,12 +27,13 @@ const AlbumManager = {
 
   getAlbum: async (albumKey: string): Promise<Album | null> => {
     try {
-      const doc = await db.collection('albums').doc(albumKey).get();
-      if (!doc.exists) {
+      const albumDocRef = doc(db, 'albums', albumKey);
+      const albumDoc = await getDoc(albumDocRef);
+      if (!albumDoc.exists()) {
         console.log("No album found");
         return null;
       }
-      return doc.data() as Album;
+      return { albumKey: albumDoc.id, ...albumDoc.data() } as Album;
     } catch (error) {
       console.log("Error fetching album:", error);
       return null;

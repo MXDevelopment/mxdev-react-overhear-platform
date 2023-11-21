@@ -1,28 +1,44 @@
-import firebase from '@react-native-firebase/app';
-import '@react-native-firebase/firestore';
-
-const db = firebase.firestore();
+import db from '../services/firebase/firebase'; 
+import { collection, query, where, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { ITags } from './Tags';
 
 // Define TypeScript interfaces for your Pin and other types as needed
 interface Pin {
-  key: string;
+  albumKey: string;
+  pinDescription: string;
   isAvailable: boolean;
-  // Add other pin properties
+  location: Location;
+  name: string;
+  pinIcon: string;
+  pinKey: string;
+  pinType: string;
+  project: string;
+  qrPath: string;
+  tags: ITags;
+  sequentialOrderLogic: string;
+  sequentialOrderNum: number;
+  isDeliverPinsSequentially: boolean;
 }
 
 interface UserViewModel {
-  key: string;
-  pins: string[];
-  // Add other user view model properties
+  key?: string;
+  bio?: string;
+  username?: string;
+  image?: string;
+  name?: string;
+  recordings: string[];
+  social?: string;
+  fcmToken?: string;
 }
 
 const PinManager = {
   observePins: async (projectKey: string): Promise<Pin[]> => {
     try {
-      const querySnapshot = await db.collection('pins').where('project', '==', projectKey).get();
+      const pinsQuery = query(collection(db, 'pins'), where('project', '==', projectKey));
+      const querySnapshot = await getDocs(pinsQuery);
       const pins: Pin[] = [];
-      querySnapshot.forEach((doc) => {
-        const pin = doc.data() as Pin;
+      querySnapshot.forEach((docSnapshot) => {
+        const pin = { pinKey: docSnapshot.id, ...docSnapshot.data() } as Pin;
         if (pin.isAvailable) {
           pins.push(pin);
         }
@@ -36,13 +52,12 @@ const PinManager = {
 
   collectPin: async (pin: Pin, user: UserViewModel): Promise<void> => {
     try {
-      // Logic to handle the collection of a pin
-      if (!user.pins.includes(pin.key)) {
-        user.pins.push(pin.key);
-        // Update the user in the database
-        await db.collection('users').doc(user.key).update(user);
+      if (!user.recordings.includes(pin.pinKey)) {
+        user.recordings.push(pin.pinKey);
+        const userDocRef = doc(db, 'users', user.key);
+        const updatedUser = { recordings: user.recordings }; 
+        await updateDoc(userDocRef, updatedUser);
       }
-      // Additional logic to update the pin
     } catch (error) {
       console.log("Error collecting pin:", error);
     }
@@ -50,11 +65,10 @@ const PinManager = {
 
   removePin: async (pin: Pin, user: UserViewModel): Promise<void> => {
     try {
-      // Logic to handle the removal of a pin
-      user.pins = user.pins.filter(pinKey => pinKey !== pin.key);
-      // Update the user in the database
-      await db.collection('users').doc(user.key).update(user);
-      // Additional logic to update the pin
+      user.recordings = user.recordings.filter(pinKey => pinKey !== pin.pinKey);
+      const userDocRef = doc(db, 'users', user.key);
+      const updatedUser = { recordings: user.recordings }; 
+      await updateDoc(userDocRef, updatedUser);
     } catch (error) {
       console.log("Error removing pin:", error);
     }

@@ -1,5 +1,5 @@
-import { DocumentData } from '@firebase/firestore-types'; // Import the appropriate Firestore types
-import { GeoFenceQR } from './GeoFenceQR';
+import { DocumentData } from 'firebase/firestore';
+import { IGeoFenceQR } from './GeoFenceQR';
 
 export interface Project {
     key?: DocumentData;
@@ -8,10 +8,9 @@ export interface Project {
     shortDescription?: string;
     website?: string;
     icon?: string;
-    geoFenceQR?: GeoFenceQR;
+    geoFenceQR?: IGeoFenceQR;
     pins?: string[];
     permission?: string[];
-    // tags?: ProjectTags;
     isAvailable?: boolean;
     isQREnabled?: boolean;
     isDeliverPinsSequentially?: boolean;

@@ -1,21 +1,24 @@
-import firebase from '@react-native-firebase/app';
-import '@react-native-firebase/firestore';
+import db from '../services/firebase/firebase';
+import { collection, getDocs, getDoc, doc } from 'firebase/firestore';
 
-const db = firebase.firestore();
-
-// Define TypeScript interfaces for your recording and other types as needed
 interface Recording {
-  key: string;
-  // Add other recording properties
+  albumKey?: string;
+  collectionLog?: string;
+  file?: string;
+  key?: string;
+  ownership?: string;
+  pinKey?: string;
+  tags?: string;
+  whereQRFind?: string;
 }
 
 const RecordingManager = {
   observeRecordings: async (): Promise<Recording[]> => {
     try {
-      const querySnapshot = await db.collection('recordings').get();
+      const querySnapshot = await getDocs(collection(db, 'recordings'));
       const recordings: Recording[] = [];
-      querySnapshot.forEach((doc) => {
-        const recording = doc.data() as Recording;
+      querySnapshot.forEach((docSnapshot) => {
+        const recording = { key: docSnapshot.id, ...docSnapshot.data() } as Recording;
         recordings.push(recording);
       });
       return recordings;
@@ -27,12 +30,13 @@ const RecordingManager = {
 
   getRecording: async (recordingKey: string): Promise<Recording | null> => {
     try {
-      const doc = await db.collection('recordings').doc(recordingKey).get();
-      if (!doc.exists) {
+      const docRef = doc(db, 'recordings', recordingKey);
+      const docSnapshot = await getDoc(docRef);
+      if (!docSnapshot.exists()) {
         console.log("No recording found");
         return null;
       }
-      return doc.data() as Recording;
+      return { key: docSnapshot.id, ...docSnapshot.data() } as Recording;
     } catch (error) {
       console.log("Error fetching recording:", error);
       return null;

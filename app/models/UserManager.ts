@@ -1,22 +1,28 @@
-import firebase from '@react-native-firebase/app';
-import '@react-native-firebase/firestore';
-import '@react-native-firebase/auth';
-import { User } from './User';
+import db from '../services/firebase/firebase'; 
+import { doc, getDoc } from 'firebase/firestore';
 
-const db = firebase.firestore();
 
+interface User {
+  userKey?: string;
+  bio?: string;
+  fcmToken?: string;
+  image?: string;
+  name?: string;
+  recordings: string[];
+  social?: string;
+  username?: string;
+}
 const UserManager = {
-  // ... other methods ...
-
   getCurrentUser: async (userId: string): Promise<User | null> => {
     try {
-      const userDoc = await db.collection('users').doc(userId).get();
-      if (!userDoc.exists) {
+      const userDocRef = doc(db, 'users', userId);
+      const userDoc = await getDoc(userDocRef);
+      if (!userDoc.exists()) {
         console.log("No user found");
         return null;
       }
       console.log("Current user found");
-      return userDoc.data() as User; // Cast to User class
+      return { userKey: userDoc.id, ...userDoc.data() } as User; // Cast to User class
     } catch (error) {
       console.log("Unable to get User:", error);
       return null;

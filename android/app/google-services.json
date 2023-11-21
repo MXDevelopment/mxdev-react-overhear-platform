@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "316383840582",
+    "firebase_url": "https://overhear-2.firebaseio.com",
+    "project_id": "overhear-2",
+    "storage_bucket": "overhear-2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316383840582:android:b6a5767b6d3d372fa5bd47",
+        "android_client_info": {
+          "package_name": "com.birmingham.first"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "316383840582-52dqa4tredjn00khh02pjuuvdegdp8c3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCm0Pn6saHDS17Bl0uYKnP8m0wlsjoo4hs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "316383840582-52dqa4tredjn00khh02pjuuvdegdp8c3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "316383840582-ee1iunhh8acsmqnc9nrqsieorgv8qgfo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.andrewgraham.Overhear",
+                "app_store_id": "1279424977"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316383840582:android:e30e6018e973e0e0",
+        "android_client_info": {
+          "package_name": "com.birmingham.overhear"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "316383840582-bc83ea84pnjgbsjlecfq1aa6dids3hcn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.birmingham.overhear",
+            "certificate_hash": "d0e661838e19d2d79cb5bf741dd92229ed9c8e01"
+          }
+        },
+        {
+          "client_id": "316383840582-52dqa4tredjn00khh02pjuuvdegdp8c3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCm0Pn6saHDS17Bl0uYKnP8m0wlsjoo4hs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "316383840582-52dqa4tredjn00khh02pjuuvdegdp8c3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "316383840582-ee1iunhh8acsmqnc9nrqsieorgv8qgfo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.andrewgraham.Overhear",
+                "app_store_id": "1279424977"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

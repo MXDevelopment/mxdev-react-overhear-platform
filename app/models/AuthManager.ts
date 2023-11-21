@@ -1,4 +1,4 @@
-import auth from '@react-native-firebase/auth';
+import { getAuth, signInAnonymously, onAuthStateChanged } from "firebase/auth";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import UserManager from './UserManager'; 
 import UserDao from './UserDao';
@@ -8,6 +8,7 @@ import { Project } from './Project';
 class AuthManager {
   static justLoggedIn = true;
   private static instance: AuthManager;
+  private auth = getAuth();
 
   private constructor() {}
 
@@ -53,25 +54,25 @@ class AuthManager {
   static fcmToken: string | null = null;
 
   checkAuthentication = async (completion: (loggedIn: boolean) => void): Promise<void> => {
-    const currentAuthUser = auth().currentUser;
-
-    if (!currentAuthUser) {
-      await this.anonymousSignIn(completion);
-    } else {
-      try {
-        const userReturn = await UserManager.getCurrentUser(currentAuthUser.uid);
-        if (userReturn) {
-          UserDao.shared.saveCurrentUser(userReturn);
-          completion(true);
-        } else {
-          // Handle anonymous user or user not found
-          this.handleAnonymousOrNotFoundUser(currentAuthUser, completion);
+    onAuthStateChanged(this.auth, async (user) => {
+      if (!user) {
+        await this.anonymousSignIn(completion);
+      } else {
+        try {
+          const userReturn = await UserManager.getCurrentUser(user.uid);
+          if (userReturn) {
+            UserDao.shared.saveCurrentUser(userReturn);
+            completion(true);
+          } else {
+            // Handle anonymous user or user not found
+            this.handleAnonymousOrNotFoundUser(user, completion);
+          }
+        } catch (error) {
+          console.error('Error getting current user:', error);
+          completion(false);
         }
-      } catch (error) {
-        console.error('Error getting current user:', error);
-        completion(false);
       }
-    }
+    });
   };
 
   private handleAnonymousOrNotFoundUser = (currentAuthUser: any, completion: (loggedIn: boolean) => void): void => {
@@ -92,7 +93,7 @@ class AuthManager {
 
   private anonymousSignIn = async (completion: (loggedIn: boolean) => void): Promise<void> => {
     try {
-      const authResult = await auth().signInAnonymously();
+      const authResult = await signInAnonymously(this.auth);
       const user: UserViewModel = {
         key: authResult.user.uid,
         bio: null, 
@@ -100,8 +101,8 @@ class AuthManager {
         image: null, 
         name: null, 
         recordings: [], // default empty array
-        social: null, 
-        fcmToken: AuthManager.fcmToken 
+      social: null, 
+      fcmToken: AuthManager.fcmToken 
       };
       UserDao.shared.saveCurrentUserWithFB(user);
       completion(true);
@@ -113,7 +114,7 @@ class AuthManager {
   
 
   removeAnonymousUser = async (completion: (success: boolean) => void): Promise<void> => {
-    const anonymousUser = auth().currentUser;
+    const anonymousUser = this.auth.currentUser;
     if (anonymousUser?.isAnonymous) {
       try {
         await anonymousUser.delete();

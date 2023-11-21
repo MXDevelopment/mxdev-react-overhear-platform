@@ -1,23 +1,31 @@
-import firebase from '@react-native-firebase/app';
-import '@react-native-firebase/firestore';
-
-const db = firebase.firestore();
+import db from '../services/firebase/firebase'; 
+import { collection, getDocs, getDoc, doc } from 'firebase/firestore';
+import { IGeoFenceQR } from './GeoFenceQR';
 
 // Define TypeScript interfaces for your project and other types as needed
 interface Project {
-  key: string;
-  isQREnabled: boolean;
-  isAvailable: boolean; 
-  // Add other project properties
+    key?: string; 
+    projectName?: string;
+    projectOwner?: string;
+    shortDescription?: string;
+    website?: string;
+    icon?: string;
+    geoFenceQR?: IGeoFenceQR;
+    pins?: string[];
+    permission?: string[];
+    isAvailable?: boolean;
+    isQREnabled?: boolean;
+    isDeliverPinsSequentially?: boolean;
+    isSequentialEnabled?: boolean;
 }
 
 const ProjectManager = {
   observeProjects: async (): Promise<Project[]> => {
     try {
-      const querySnapshot = await db.collection('projects').get();
+      const querySnapshot = await getDocs(collection(db, 'projects'));
       const projects: Project[] = [];
-      querySnapshot.forEach((doc) => {
-        const project = doc.data() as Project;
+      querySnapshot.forEach((docSnapshot) => {
+        const project = { key: docSnapshot.id, ...docSnapshot.data() } as Project;
         if (project.isAvailable) {
           projects.push(project);
         }
@@ -31,18 +39,20 @@ const ProjectManager = {
 
   getProject: async (projectKey: string): Promise<Project | null> => {
     try {
-      const doc = await db.collection('projects').doc(projectKey).get();
-      if (!doc.exists) {
+      const projectDocRef = doc(db, 'projects', projectKey);
+      const projectDoc = await getDoc(projectDocRef);
+      if (!projectDoc.exists()) {
         console.log("No project found");
         return null;
       }
-      return doc.data() as Project;
+      return { key: projectDoc.id, ...projectDoc.data() } as Project;
     } catch (error) {
       console.log("Error fetching project:", error);
       return null;
     }
   },
 
+  // Assuming 'pin' has a 'project' property with the project ID and a 'pinType' property
   checkPinEnableForQRCodeOrNot: async (pin: any): Promise<boolean> => {
     try {
       const project = await ProjectManager.getProject(pin.project);

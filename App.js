@@ -5,6 +5,10 @@ import React from "react"
 import { registerRootComponent } from "expo"
 import { Platform } from "react-native"
 import * as SplashScreen from "expo-splash-screen"
+import { AppRegistry } from 'react-native';
+import { name as appName } from './app.json';
+
+AppRegistry.registerComponent(appName, () => App);
 
 SplashScreen.preventAutoHideAsync()
 

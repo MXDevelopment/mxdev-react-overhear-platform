@@ -1,12 +1,12 @@
-import storage from '@react-native-firebase/storage';
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 class ImageManager {
-  private storageRef = storage().ref();
-
+  private storage = getStorage();
+  
   async getImage(imageURL: string): Promise<string | null> {
     try {
-      const imageRef = this.storageRef.child(imageURL);
-      const url = await imageRef.getDownloadURL();
+      const imageRef = ref(this.storage, imageURL);
+      const url = await getDownloadURL(imageRef);
       return url;
     } catch (error) {
       console.log("Unable to download image:", error);

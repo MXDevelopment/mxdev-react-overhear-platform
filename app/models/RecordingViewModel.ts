@@ -2,13 +2,13 @@ import { Recording } from './Recording';
 import { CollectionLog } from './CollectionLog'; 
 import { Ownership } from './Ownership'; 
 import { RecordingTags } from './RecordingTags'; 
-import { RecordingFile } from './RecordingFile'; 
+import { IRecordingFile } from './RecordingFile'; 
 import { AdminMessagePin } from './AdminMessagePin'; 
 
 class RecordingViewModel {
   albumKey: string | null;
   collectionLog: CollectionLog | null;
-  recordingFile: RecordingFile | null; 
+  recordingFile: IRecordingFile | null; 
   pinKey: string | null;
   title: string | null;
   ownership: Ownership | null;
