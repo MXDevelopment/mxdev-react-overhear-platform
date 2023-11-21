@@ -1,12 +1,12 @@
 import { CollectionLog } from "./CollectionLog";
 import { Ownership } from "./Ownership";
-import { RecordingFile } from "./RecordingFile";
+import { IRecordingFile } from "./RecordingFile";
 import { RecordingTags } from "./RecordingTags";
 
 export class Recording {
     albumKey?: string;
     collectionLog?: CollectionLog;
-    file?: RecordingFile;
+    file?: IRecordingFile;
     key?: string;
     ownership?: Ownership;
     pinKey?: string;

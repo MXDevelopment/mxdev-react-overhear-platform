@@ -1,7 +1,7 @@
 // Import necessary types
 import { Location, GeoPointModel } from './Location'; 
 import { CollectionLog } from './CollectionLog'; 
-import { RecordingFile } from './RecordingFile'; 
+import { IRecordingFile } from './RecordingFile'; 
 import { Ownership } from './Ownership'; 
 import { Qr } from './Qr'; 
 import { RecordingTags } from './RecordingTags'; 
@@ -25,7 +25,7 @@ export class AdminPinViewModel {
     iconURL?: string;
     isAdminMessage: boolean = false;
     collectionLog?: CollectionLog;
-    file?: RecordingFile;
+    file?: IRecordingFile;
     location?: Location;
     ownership?: Ownership;
     qr?: Qr;
