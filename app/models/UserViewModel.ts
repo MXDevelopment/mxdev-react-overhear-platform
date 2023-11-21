@@ -23,17 +23,20 @@ class UserViewModel {
     this.fcmToken = user.fcmToken;
   }
 
-  static fromRealm(realm: UserRealm): UserViewModel {
-    const viewModel = new UserViewModel({} as User); // Empty User, adjust as needed
-    viewModel.key = realm.key;
-    viewModel.bio = realm.bio;
-    viewModel.username = realm.username;
-    viewModel.image = realm.image;
-    viewModel.name = realm.name;
-    viewModel.recordings = [...realm.recordings];
-    viewModel.social = realm.social;
-    viewModel.fcmToken = realm.fcmToken;
-    return viewModel;
+  static fromRealm(realmObject: UserRealm): UserViewModel {
+    // Create a User object from the UserRealm object
+    const user: User = {
+      userKey: realmObject.key,
+      bio: realmObject.bio,
+      username: realmObject.username,
+      image: realmObject.image,
+      name: realmObject.name,
+      recordings: realmObject.recordings,
+      social: realmObject.social,
+      fcmToken: realmObject.fcmToken
+    };
+
+    return new UserViewModel(user);
   }
 }
 

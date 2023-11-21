@@ -1,11 +1,11 @@
 // Import necessary types
-import { Location, GeoPointModel } from './Location'; // Adjust the path as needed
-import { CollectionLog } from './CollectionLog'; // Adjust the path as needed
-import { File } from './RecordingFile'; // Adjust the path as needed
-import { Ownership } from './Ownership'; // Adjust the path as needed
-import { Qr } from './Qr'; // Adjust the path as needed
-import { RecordingTags } from './RecordingTags'; // Adjust the path as needed
-import { Author } from './Author'; // Adjust the path as needed
+import { Location, GeoPointModel } from './Location'; 
+import { CollectionLog } from './CollectionLog'; 
+import { RecordingFile } from './RecordingFile'; 
+import { Ownership } from './Ownership'; 
+import { Qr } from './Qr'; 
+import { RecordingTags } from './RecordingTags'; 
+import { Author } from './Author'; 
 import { AdminMessagePin } from './AdminMessagePin';
 
 
@@ -25,7 +25,7 @@ export class AdminPinViewModel {
     iconURL?: string;
     isAdminMessage: boolean = false;
     collectionLog?: CollectionLog;
-    file?: File;
+    file?: RecordingFile;
     location?: Location;
     ownership?: Ownership;
     qr?: Qr;
@@ -51,7 +51,6 @@ export class AdminPinViewModel {
         this.key = pin?.pinKey;
         this.title = pin?.file?.title;
         this.project = pin?.project;
-        
         this.bioDescription = author?.bio || null;
         this.artistLabel = author?.name || null;
         this.authorWebsite = author?.website || null;

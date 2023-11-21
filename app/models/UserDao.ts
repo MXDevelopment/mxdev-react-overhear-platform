@@ -36,8 +36,10 @@ class UserDao {
   };
 
   getCurrentUser = (): UserViewModel | null => {
-    const user = this.realm.objects('UserRealm')[0];
-    return user ? new UserViewModel(user) : null;
+    const userRealmObj = this.realm.objects('UserRealm')[0];
+    if (!userRealmObj) return null;
+
+    return UserViewModel.fromRealm(userRealmObj);
   };
 
   deleteCurrentUser = (): void => {

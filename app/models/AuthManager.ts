@@ -77,13 +77,13 @@ class AuthManager {
   private handleAnonymousOrNotFoundUser = (currentAuthUser: any, completion: (loggedIn: boolean) => void): void => {
     const user: UserViewModel = {
       key: currentAuthUser.uid,
-      bio: null, // or a default value if applicable
-      username: null, // or a default value if applicable
-      image: null, // or a default value if applicable
-      name: null, // or a default value if applicable
+      bio: null, 
+      username: null, 
+      image: null, 
+      name: null, 
       recordings: [], // default empty array
-      social: null, // or a default value if applicable
-      fcmToken: AuthManager.fcmToken // already defined in the AuthManager
+      social: null, 
+      fcmToken: AuthManager.fcmToken 
     };
     UserDao.shared.saveCurrentUserWithFB(user);
     completion(true);
@@ -95,13 +95,13 @@ class AuthManager {
       const authResult = await auth().signInAnonymously();
       const user: UserViewModel = {
         key: authResult.user.uid,
-        bio: null, // or a default value if applicable
-        username: null, // or a default value if applicable
-        image: null, // or a default value if applicable
-        name: null, // or a default value if applicable
+        bio: null, 
+        username: null, 
+        image: null, 
+        name: null, 
         recordings: [], // default empty array
-        social: null, // or a default value if applicable
-        fcmToken: AuthManager.fcmToken // already defined in the AuthManager
+        social: null, 
+        fcmToken: AuthManager.fcmToken 
       };
       UserDao.shared.saveCurrentUserWithFB(user);
       completion(true);

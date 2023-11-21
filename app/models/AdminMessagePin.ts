@@ -1,5 +1,5 @@
 import { CollectionLog } from './CollectionLog';
-import { File } from './RecordingFile';
+import { RecordingFile } from './RecordingFile';
 import { Ownership } from './Ownership'
 import { Location } from './Location'
 import { Qr } from './Qr'
@@ -7,7 +7,7 @@ import { AdminPinViewModel } from './AdminPinViewModel';
 
 interface AdminMessagePin {
     collectionLog?: CollectionLog; 
-    file?: File;                  
+    file?: RecordingFile;                  
     isAvailable?: boolean;
     location?: Location;         
     ownership?: Ownership;        
