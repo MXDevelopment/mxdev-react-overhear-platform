@@ -1,6 +1,6 @@
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import db from '../services/firebase/firebase'; 
 import Realm from 'realm';
-import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
 import { UserViewModel } from './UserViewModel';
 import { UserRealm } from './UserRealm';
 
@@ -9,7 +9,7 @@ class UserDao {
   private realm: Realm;
 
   private constructor() {
-    this.realm = new Realm({ schema: [UserRealm] }); 
+    this.realm = new Realm({ schema: [UserRealm] });
   }
 
   public static get shared(): UserDao {
@@ -40,11 +40,10 @@ class UserDao {
     });
   };
 
-  saveCurrentUserWithFB = async (user: UserViewModel): Promise<void> => {
+   saveCurrentUserWithFB = async (user: UserViewModel): Promise<void> => {
     this.saveCurrentUser(user);
-    const currentAuthUser = auth().currentUser;
-    if (currentAuthUser && !currentAuthUser.isAnonymous) {
-      firestore().collection('users').doc(currentAuthUser.uid).set(user);
+    if (user.key) {
+      await setDoc(doc(db, 'users', user.key), user);
     }
   };
 

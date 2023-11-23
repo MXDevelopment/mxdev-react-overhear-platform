@@ -1,4 +1,4 @@
-import { getAuth, signInAnonymously, onAuthStateChanged } from "firebase/auth";
+import { getAuth, signInAnonymously, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import UserManager from './UserManager'; 
 import UserDao from './UserDao';
@@ -18,7 +18,25 @@ class AuthManager {
     }
     return AuthManager.instance;
   }
-
+  signInWithEmailAndPassword = async (email, password, completion) => {
+    try {
+      const authResult = await signInWithEmailAndPassword(this.auth, email, password);
+      // Check if the sign-in was successful and handle accordingly
+      if (authResult.user) {
+        // Update the auth token or any other necessary state
+        // You can also fetch user data and store it if needed
+        // ...
+        completion(true);
+      } else {
+        // Handle unsuccessful sign-in
+        completion(false);
+      }
+    } catch (error) {
+      console.error('Email/password sign-in failed', error);
+      completion(false);
+    }
+  };
+  
   selectProject = (project: Project): void => {
     AsyncStorage.setItem('selectedProject', project.projectName)
       .catch((error) => console.error('Error saving selectedProject:', error));

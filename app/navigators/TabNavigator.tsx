@@ -1,12 +1,11 @@
 import React from "react";
 import { Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
 import { WelcomeScreen } from "../screens/WelcomeScreen";
 import { OverhearScreen } from "../screens/OverhearScreen";
 import { LibraryScreen } from "../screens/LibraryScreen";
 import { SettingScreen } from "../screens/SettingScreen";
-import { SignInScreen } from "../screens/SignInScreen";
+import { LoginScreen } from "app/screens";
 
 const libraryIcon = require("../screens/anima-imports/images/library-24-20-px.png");
 const mapIcon = require("../screens/anima-imports/images/map-icon-22-20-px.png");
@@ -17,7 +16,7 @@ const signinIcon = require("../screens/anima-imports/images/icons8-guardian-24.p
 
 export type NavigatorParamList = {
   Welcome: undefined;
-  SignIn: undefined;
+  LogIn: undefined;
   Overhear: undefined;
   Library: undefined;
   Setting: undefined;
@@ -52,8 +51,8 @@ const TabNavigator: React.FC = () => {
         }}
       />
       <Tab.Screen
-        name="SignIn"
-        component={SignInScreen}
+        name="LogIn"
+        component={LoginScreen}
         options={{
           tabBarIcon: ({ focused }) => {
             return <Image source={signinIcon} />;

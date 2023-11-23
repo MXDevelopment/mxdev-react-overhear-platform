@@ -5,6 +5,8 @@ import { Button, Icon, Screen, Text, TextField, TextFieldAccessoryProps } from "
 import { useStores } from "../models"
 import { AppStackScreenProps } from "../navigators"
 import { colors, spacing } from "../theme"
+import AuthManager from "app/models/AuthManager"
+
 
 interface LoginScreenProps extends AppStackScreenProps<"Login"> {}
 
@@ -34,19 +36,21 @@ export const LoginScreen: FC<LoginScreenProps> = observer(function LoginScreen(_
   const errors: typeof validationErrors = isSubmitted ? validationErrors : ({} as any)
 
   function login() {
-    setIsSubmitted(true)
-    setAttemptsCount(attemptsCount + 1)
-
-    if (Object.values(validationErrors).some((v) => !!v)) return
-
-    // Make a request to your server to get an authentication token.
-    // If successful, reset the fields and set the token.
-    setIsSubmitted(false)
-    setAuthPassword("")
-    setAuthEmail("")
-
-    // We'll mock this with a fake token.
-    setAuthToken(String(Date.now()))
+    setIsSubmitted(true);
+    setAttemptsCount(attemptsCount + 1);
+  
+    if (Object.values(validationErrors).some((v) => !!v)) return;
+  
+    // Make a request to sign in with email and password
+    AuthManager.shared.signInWithEmailAndPassword(authEmail, authPassword, (success) => {
+      setIsSubmitted(false);
+      if (success) {
+        setAuthPassword(""); // Clear the password field on successful login
+        // Optionally, navigate to the main app screen or perform other actions
+      } else {
+        // Handle failed login
+      }
+    });
   }
 
   const PasswordRightAccessory = useMemo(

@@ -7,11 +7,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Config from "../config";
 import * as Screens from "app/screens";
 import TabNavigator from "./TabNavigator";
+
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities";
 
 export type AppStackParamList = {
   TabNavigator: undefined;
   Tutorial: undefined;
+  Login: undefined;
 };
 
 const exitRoutes = Config.exitRoutes;
