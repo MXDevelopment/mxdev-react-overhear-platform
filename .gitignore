@@ -35,7 +35,7 @@ local.properties
 *.hprof
 .cxx/
 
-Android/app/src/google-services.json
+Android/app/google-services.json
 
 # node.js
 #
