@@ -7,13 +7,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Config from "../config";
 import * as Screens from "app/screens";
 import TabNavigator from "./TabNavigator";
-
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities";
 
 export type AppStackParamList = {
   TabNavigator: undefined;
   Tutorial: undefined;
-  Login: undefined;
+  LogIn: undefined;
+  SignUp: undefined;
+  Welcome: undefined;
+  Library: undefined;
+  Overhear: undefined;
+  Settings: undefined;
+
 };
 
 const exitRoutes = Config.exitRoutes;
@@ -57,6 +62,8 @@ const AppStack = observer(function AppStack() {
 >
   <Stack.Screen name="Tutorial" component={Screens.TutorialScreen} />
   <Stack.Screen name="TabNavigator" component={TabNavigator} />
+  <Stack.Screen name="LogIn"component={Screens.LoginScreen}/>
+  <Stack.Screen name="SignUp"component={Screens.SignUpScreen}/>
 </Stack.Navigator>
   );
 });

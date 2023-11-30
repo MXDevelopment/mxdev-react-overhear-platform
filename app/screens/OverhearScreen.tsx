@@ -12,7 +12,7 @@
   import { AppStackScreenProps } from "../navigators"
   import { Screen } from "../components"
   import MapView from 'react-native-maps';
-  import { StyleSheet, View } from 'react-native';
+
   // import { useNavigation } from "@react-navigation/native"
   // import { useStores } from "../models"
 

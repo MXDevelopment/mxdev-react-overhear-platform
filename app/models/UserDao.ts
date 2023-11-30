@@ -1,5 +1,5 @@
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import db from '../services/firebase/firebase'; 
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../firebase/firebase';
 import Realm from 'realm';
 import { UserViewModel } from './UserViewModel';
 import { UserRealm } from './UserRealm';
@@ -20,18 +20,18 @@ class UserDao {
   }
 
   private convertToUserRealm(realmObject: any): UserRealm {
-    return {
-      id: realmObject.id,
-      key: realmObject.key,
-      bio: realmObject.bio,
-      username: realmObject.username,
-      image: realmObject.image,
-      name: realmObject.name,
-      recordings: realmObject.recordings,
-      fcmToken: realmObject.fcmToken,
-      social: realmObject.social
-    };
-  }
+    const userRealm = new UserRealm();
+    userRealm.id = realmObject.id;
+    userRealm.key = realmObject.key;
+    userRealm.bio = realmObject.bio;
+    userRealm.username = realmObject.username;
+    userRealm.image = realmObject.image;
+    userRealm.name = realmObject.name;
+    userRealm.recordings = realmObject.recordings;
+    userRealm.fcmToken = realmObject.fcmToken;
+    userRealm.social = realmObject.social;
+    return userRealm;
+}
 
   saveCurrentUser = async (user: UserViewModel): Promise<void> => {
     this.deleteCurrentUser();

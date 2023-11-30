@@ -1,6 +1,6 @@
 
 import React, { useState, useRef } from "react";
-import { View, Image, StyleSheet, FlatList, TouchableOpacity, Dimensions } from "react-native";
+import { View, Image, StyleSheet, FlatList, TouchableOpacity, Dimensions, ViewToken } from "react-native";
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import Tutorial1 from "../components/Tutorial1";
 import Tutorial2 from "../components/Tutorial2";
@@ -10,22 +10,17 @@ import Tutorial5 from "../components/Tutorial5";
 import { AppStackParamList } from "../navigators/AppNavigator";
 import { CommonActions } from "@react-navigation/native";
 
-const TutorialsData = [
-  { id: '1', Component: Tutorial1 },
-  { id: '2', Component: Tutorial2 },
-  { id: '3', Component: Tutorial3 },
-  { id: '4', Component: Tutorial4 },
-  { id: '5', Component: Tutorial5 },
-];
 
 type TutorialScreenProps = NativeStackScreenProps<AppStackParamList, "Tutorial">;
 
 export const TutorialScreen: React.FC<TutorialScreenProps> = ({ navigation }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const viewConfigRef = useRef({ viewAreaCoveragePercentThreshold: 50 });
-  const onViewRef = useRef((viewableItems) => {
-    setActiveIndex(viewableItems.changed[0].index);
+  const onViewRef = useRef(({ viewableItems }: { viewableItems: ViewToken[]; changed: ViewToken[] }) => {
+    const newIndex = viewableItems[0]?.index; // Use optional chaining
+    if (typeof newIndex === 'number') {
+      setActiveIndex(newIndex);
+    }
   });
 
   const handleExitTutorial = () => {
@@ -38,7 +33,10 @@ export const TutorialScreen: React.FC<TutorialScreenProps> = ({ navigation }) =>
       })
     );
   };
-
+  const viewConfigRef = useRef({
+    viewAreaCoveragePercentThreshold: 50 // or any other configuration you need
+  });
+  
   const tutorials = [<Tutorial1 />, <Tutorial2 />, <Tutorial3 />, <Tutorial4 />, <Tutorial5 />];
 
   const renderItem = ({ item }: { item: React.ReactNode }) => ( // Specify the type of 'item' as React.ReactNode

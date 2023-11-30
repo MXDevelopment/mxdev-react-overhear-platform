@@ -1,4 +1,4 @@
-import db from '../services/firebase/firebase'; // Import Firestore instance
+import { db } from '../firebase/firebase';
 import { collection, getDocs, getDoc, doc } from 'firebase/firestore';
 
 // Define TypeScript interfaces for your album and other types as needed

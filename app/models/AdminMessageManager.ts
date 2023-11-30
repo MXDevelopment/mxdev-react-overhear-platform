@@ -1,30 +1,15 @@
-import db from '../services/firebase/firebase'; // Import Firestore instance
+import { db } from '../firebase/firebase'; 
 import { collection, getDocs } from 'firebase/firestore';
-import { CollectionLog } from './CollectionLog';
-import { IRecordingFile } from './RecordingFile';
-import { Ownership } from './Ownership';
-import { Qr } from './Qr';
+import { IAdminMessage } from './AdminMessage';
 
-// Define TypeScript interface for your Admin Message
-interface AdminMessage {
-    collectionLog?: CollectionLog; 
-    file?: IRecordingFile;                  
-    isAvailable?: boolean;
-    location?: Location;         
-    ownership?: Ownership;        
-    pinKey?: string;
-    pinIcon?: string;
-    project?: string;
-    qr?: Qr;    
-}
 
-const AdminMessageManager = {
-    getAllAdminMessages: async (): Promise<AdminMessage[]> => {
+export const AdminMessageManager = {
+    getAllAdminMessages: async (): Promise<IAdminMessage[]> => {
         try {
             const querySnapshot = await getDocs(collection(db, 'adminMessages'));
-            const adminMessages: AdminMessage[] = [];
+            const adminMessages: IAdminMessage[] = [];
             querySnapshot.forEach((doc) => {
-                const adminMessage = { key: doc.id, ...doc.data() } as AdminMessage;
+                const adminMessage = { key: doc.id, ...doc.data() } as IAdminMessage;
                 adminMessages.push(adminMessage);
             });
             return adminMessages;
@@ -37,4 +22,4 @@ const AdminMessageManager = {
     // Add other methods if necessary, such as getting a single admin message
 };
 
-export default AdminMessageManager;
+

@@ -17,7 +17,7 @@ export const EpisodeStoreModel = types
       if (response.kind === "ok") {
         store.setProp("episodes", response.episodes)
       } else {
-        console.tron.error(`Error fetching episodes: ${JSON.stringify(response)}`, [])
+        console.tron.error?.(`Error fetching episodes: ${JSON.stringify(response)}`, [])
       }
     },
     addFavorite(episode: Episode) {
@@ -48,5 +48,3 @@ export const EpisodeStoreModel = types
 
 export interface EpisodeStore extends Instance<typeof EpisodeStoreModel> {}
 export interface EpisodeStoreSnapshot extends SnapshotOut<typeof EpisodeStoreModel> {}
-
-// @demo remove-file

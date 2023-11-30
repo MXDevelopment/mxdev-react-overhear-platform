@@ -1,7 +1,7 @@
-import db from '../services/firebase/firebase'; // Import Firestore instance
+import { db } from '../firebase/firebase';
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 
-interface Author {
+export interface Author {
   // Define the structure of your Author object here
   authorKey?: string;
   bio?: string;
@@ -12,7 +12,7 @@ interface Author {
   website?: string;
 }
 
-const AuthorManager = {
+export const AuthorManager = {
   getAllAuthors: async (): Promise<Author[] | null> => {
     try {
       const snapshot = await getDocs(collection(db, 'authors'));
@@ -42,4 +42,4 @@ const AuthorManager = {
   // Additional functions for author management (e.g., update, delete) can be added here
 };
 
-export default AuthorManager;
+

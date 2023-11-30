@@ -3,12 +3,15 @@ const en = {
     ok: "OK!",
     cancel: "Cancel",
     back: "Back",
+    logOut: "Log Out"
   },
   welcomeScreen: {
     postscript:
       "Overhear was launched in 2023 to help you tune in, be present and remember what we're here for. Stick Around!",
     topTitle: "Nice to See You",
     subHeading: "Welcome to Overhear",
+    
+    
   },
   signInScreen: {
     postscript:
@@ -28,6 +31,7 @@ const en = {
     passwordFieldLabel: "Password",
     passwordFieldPlaceholder: "Enter your password",
     tapToSignIn: "Tap to Sign In",
+    continueAsGuest: "Continue without Signing In"
   },
   errorScreen: {
     title: "Something went wrong!",

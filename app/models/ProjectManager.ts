@@ -1,4 +1,4 @@
-import db from '../services/firebase/firebase'; 
+import { db } from '../firebase/firebase';
 import { collection, getDocs, getDoc, doc } from 'firebase/firestore';
 import { IGeoFenceQR } from './GeoFenceQR';
 

@@ -28,7 +28,8 @@ import { ErrorBoundary } from "./screens/ErrorScreen/ErrorBoundary"
 import * as storage from "./utils/storage"
 import { customFontsToLoad } from "./theme"
 import Config from "./config"
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { GestureHandlerRootView } from "react-native-gesture-handler"
+import { ViewStyle } from "react-native"
 
 export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
 
@@ -54,7 +55,7 @@ const config = {
 }
 
 interface AppProps {
-  hideSplashScreen: () => Promise<void>
+  hideSplashScreen: () => Promise<boolean>
 }
 
 /**
@@ -97,16 +98,20 @@ function App(props: AppProps) {
   return (
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
       <ErrorBoundary catchErrors={Config.catchErrors}>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <AppNavigator
-          linking={linking}
-          initialState={initialNavigationState}
-          onStateChange={onNavigationStateChange}
-        />
-      </GestureHandlerRootView>
+        <GestureHandlerRootView style={$container}>
+          <AppNavigator
+            linking={linking}
+            initialState={initialNavigationState}
+            onStateChange={onNavigationStateChange}
+          />
+        </GestureHandlerRootView>
       </ErrorBoundary>
     </SafeAreaProvider>
   )
 }
 
 export default App
+
+const $container: ViewStyle = {
+  flex: 1,
+}

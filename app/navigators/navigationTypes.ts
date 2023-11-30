@@ -6,5 +6,6 @@ export type AppStackParamList = {
     Overhear: undefined;
     Library: undefined;
     Setting: undefined;
+    LogIn: undefined;
   };
   

@@ -1,101 +1,118 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, StyleSheet, View, Text, Animated } from 'react-native';
-import { ListItem } from '../components/ListItem';
-import { Swipeable, RectButton } from 'react-native-gesture-handler';
-import RecordingManager from '../models/RecordingManager';
-import UserManager from '../models/UserManager';
-import AdminMessageManager from '../models/AdminMessageManager';
-import { User } from '../models/User';
+import { View, StyleSheet, FlatList, Text, Alert } from 'react-native';
+import { observer } from 'mobx-react';
+import { ListItem } from '../components'; // Adjust the import path as needed
+import { RecordingManager, useStores } from '../models';
 
-export const LibraryScreen = ({ userId }) => {
-  const [recordings, setRecordings] = useState([]);
+interface CommonRecording {
+  key: string;
+  title: string;
+  description: string;
+  authorName?: string;
+  authorWebsite?: string;
+  authorImage?: string;
+  authorBio?: string;
+  pinIcon: string;
+}
+
+export const LibraryScreen = observer(() => {
+  const { authenticationStore } = useStores();
+  const userId = authenticationStore.userId;
+  console.log("User ID in LibraryScreen:", userId);
+
+  const [recordings, setRecordings] = useState<CommonRecording[]>([]);
+  const isAnonymous = !userId; // Determine anonymous based on userId
 
   useEffect(() => {
-    const fetchRecordings = async () => {
+    // Fetch data for either anonymous or registered user
+    const fetchData = async () => {
       try {
-        // Fetch user recordings
-        let userRecordings = [];
-        const user: User | null = await UserManager.getCurrentUser(userId);
-        if (user && user.recordings) {
-          const allRecordings = await RecordingManager.observeRecordings();
-          userRecordings = allRecordings.filter(recording => user.recordings.includes(recording.key));
-        }
-  
-        // Fetch admin messages
-        const adminMessages = await AdminMessageManager.getAllAdminMessages();
-  
-        // Combine user recordings and admin messages, removing duplicates
-        const combinedRecordings = [...new Map([...adminMessages, ...userRecordings].map(item => [item.key, item])).values()];
-  
-        setRecordings(combinedRecordings);
+        const data = userId
+          ? await RecordingManager.fetchRecordingsAndAuthors(userId)
+          : await RecordingManager.fetchRecordingsForAnonymousUser();
+        console.log("Fetched Data:", data);
+        setRecordings(data);
       } catch (error) {
-        console.error("Error fetching recordings:", error);
+        console.error("Error fetching library data:", error);
       }
     };
-  
-    fetchRecordings();
+    fetchData();
   }, [userId]);
 
-  const handleDelete = async (index) => {
-    const newRecordings = [...recordings];
-    newRecordings.splice(index, 1);
-    setRecordings(newRecordings);
+  useEffect(() => {
+    // Prompt for account creation for anonymous users
+    if (isAnonymous) {
+      promptForAccountCreation();
+    }
+  }, [isAnonymous]);
 
-    // TODO: Implement deletion in Firestore
-    // For example, you might need to update the user's recordings array in Firestore
-  };
-
-  const renderRightAction = (progress, index) => {
-    const trans = progress.interpolate({
-      inputRange: [0, 1],
-      outputRange: [64, 0],
-    });
-
-    return (
-      <RectButton onPress={() => handleDelete(index)}>
-        <Animated.View style={{ flex: 1, transform: [{ translateX: trans }] }}>
-          <Text style={styles.deleteButton}>Delete</Text>
-        </Animated.View>
-      </RectButton>
+  const promptForAccountCreation = () => {
+    Alert.alert(
+      "Create an Account",
+      "Would you like to create an account to save your recordings?",
+      [
+        {
+          text: "Not Now",
+          style: "cancel"
+        },
+        { 
+          text: "Create Account", 
+          onPress: () => {
+            // Navigate to account creation screen
+          }
+        }
+      ]
     );
   };
 
-  const renderItem = ({ item, index }) => (
-    <Swipeable renderRightActions={(progress) => renderRightAction(progress, index)}>
-      <ListItem key={index} title={item.title} author={item.author} />
-    </Swipeable>
-  );
+  const renderItem = ({ item }: { item: CommonRecording }) => {
+    return (
+      <ListItem
+        pinIcon={item.pinIcon}
+        title={item.title}
+        author={item.authorName}
+        // ...other properties as needed
+      />
+    );
+  };
+
+  if (!recordings.length) {
+    return (
+      <View style={styles.listFlexBox}>
+        <Text style={styles.placeholderText}>You've yet to collect any recordings. Check the map for your nearest pin.</Text>
+      </View>
+    );
+  }
 
   return (
-    <FlatList
-      style={styles.listFlexBox}
-      data={recordings}
-      renderItem={renderItem}
-      keyExtractor={(item, index) => index.toString()}
-      showsVerticalScrollIndicator={true}
-      showsHorizontalScrollIndicator={true}
-    />
+    <View style={styles.listFlexBox}>
+      <FlatList
+        data={recordings}
+        keyExtractor={(item) => item.key}
+        renderItem={renderItem}
+        contentContainerStyle={styles.itemContainerFlatListContent}
+      />
+    </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
-  itemContainerFlatListContent: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
   listFlexBox: {
     flex: 1,
     alignSelf: 'stretch',
     width: '100%',
     maxWidth: '100%',
   },
-  deleteButton: {
-    backgroundColor: 'red',
-    color: 'white',
-    textAlign: 'center',
-    height: '100%',
-    width: '100%',
-    lineHeight: 70,
+  itemContainerFlatListContent: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
   },
+  placeholderText: {
+    fontSize: 16,
+    color: '#666',
+    textAlign: 'center',
+    marginTop: 20,
+  },
+  // Add any additional styles you need
 });

@@ -1,20 +1,31 @@
 import { observer } from "mobx-react-lite"
 import React, { FC } from "react"
 import { Image, ImageStyle, TextStyle, View, ViewStyle } from "react-native"
-import {
-  Text,
-} from "../components"
-import { isRTL } from "../i18n"
+import { Text } from "app/components"
+import { useStores } from "../models"
+import { AppStackScreenProps } from "../navigators"
 import { colors, spacing } from "../theme"
+import { useHeader } from "../utils/useHeader"
 import { useSafeAreaInsetsStyle } from "../utils/useSafeAreaInsetsStyle"
-import { AppStackScreenProps } from "app/navigators"
 
-// Import External Assets on To Home Screen
-const welcomeFace = require("../../assets/overhear-assets/images/polygon-21.png")
-const welcomeLogo = require("../../assets/overhear-assets/images/ovhlogoartboard12x15.png")
+const welcomeLogo = require("../../assets/images/logo.png")
 
-export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeScreen(
-) {
+interface WelcomeScreenProps extends AppStackScreenProps<"Welcome"> {}
+
+export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeScreen(_props) {
+ 
+  const {
+    authenticationStore: { logout },
+  } = useStores()
+
+
+  useHeader(
+    {
+      rightTx: "common.logOut",
+      onRightPress: logout,
+    },
+    [logout],
+  )
 
   const $bottomContainerInsets = useSafeAreaInsetsStyle(["bottom"])
 
@@ -65,15 +76,6 @@ const $welcomeLogo: ImageStyle = {
   height: 88,
   width: "100%",
   marginBottom: spacing.xxl,
-}
-
-const $welcomeFace: ImageStyle = {
-  height: 169,
-  width: 269,
-  position: "absolute",
-  bottom: -47,
-  right: -80,
-  transform: [{ scaleX: isRTL ? -1 : 1 }],
 }
 
 const $welcomeHeading: TextStyle = {

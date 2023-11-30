@@ -1,4 +1,4 @@
-// File.ts
+// RecordingFile.ts
 // Equivalent of the Swift File and FileRealm structures for React Native
 
 import Realm from 'realm';

@@ -37,5 +37,3 @@ test("duration format", () => {
     'demoPodcastListScreen.accessibility.durationLabel {"hours":0,"minutes":42,"seconds":58}',
   )
 })
-
-// @demo remove-file

@@ -1,4 +1,4 @@
-import db from '../services/firebase/firebase'; 
+import { db } from '../firebase/firebase';
 import { collection, query, where, getDocs, doc, updateDoc } from 'firebase/firestore';
 import { ITags } from './Tags';
 
@@ -21,14 +21,14 @@ interface Pin {
 }
 
 interface UserViewModel {
-  key?: string;
-  bio?: string;
-  username?: string;
-  image?: string;
-  name?: string;
+  key?: string | null;
+  bio?: string | null;
+  username?: string | null;
+  image?: string | null;
+  name?: string | null;
   recordings: string[];
-  social?: string;
-  fcmToken?: string;
+  social?: string | null;
+  fcmToken?: string | null;
 }
 
 const PinManager = {
@@ -52,6 +52,11 @@ const PinManager = {
 
   collectPin: async (pin: Pin, user: UserViewModel): Promise<void> => {
     try {
+      if (!user.key) {
+        console.error("User key is undefined");
+        return;
+      }
+  
       if (!user.recordings.includes(pin.pinKey)) {
         user.recordings.push(pin.pinKey);
         const userDocRef = doc(db, 'users', user.key);
@@ -62,9 +67,14 @@ const PinManager = {
       console.log("Error collecting pin:", error);
     }
   },
-
+  
   removePin: async (pin: Pin, user: UserViewModel): Promise<void> => {
     try {
+      if (!user.key) {
+        console.error("User key is undefined");
+        return;
+      }
+  
       user.recordings = user.recordings.filter(pinKey => pinKey !== pin.pinKey);
       const userDocRef = doc(db, 'users', user.key);
       const updatedUser = { recordings: user.recordings }; 
@@ -73,6 +83,7 @@ const PinManager = {
       console.log("Error removing pin:", error);
     }
   },
+  
 
   // Add other pin-related methods as needed
 };

@@ -3,7 +3,7 @@ import { CollectionLog } from './CollectionLog';
 import { Ownership } from './Ownership'; 
 import { RecordingTags } from './RecordingTags'; 
 import { IRecordingFile } from './RecordingFile'; 
-import { AdminMessagePin } from './AdminMessagePin'; 
+import { AdminMessagePin } from './AdminMessage'; 
 
 class RecordingViewModel {
   albumKey: string | null;

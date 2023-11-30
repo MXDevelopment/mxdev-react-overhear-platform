@@ -1,79 +1,72 @@
-import { observer } from "mobx-react-lite"
-import React, { FC, useEffect, useMemo, useRef, useState } from "react"
-import { TextInput, TextStyle, ViewStyle } from "react-native"
-import { Button, Icon, Screen, Text, TextField, TextFieldAccessoryProps } from "../components"
+import React, { FC, useRef, useState } from "react"
+import { TextInput, TextStyle, ViewStyle, Alert } from "react-native"
+import { Button, Icon, Screen, Text, TextField } from "../components"
 import { useStores } from "../models"
 import { AppStackScreenProps } from "../navigators"
 import { colors, spacing } from "../theme"
-import AuthManager from "app/models/AuthManager"
 
+interface LoginScreenProps extends AppStackScreenProps<"LogIn"> {}
 
-interface LoginScreenProps extends AppStackScreenProps<"Login"> {}
+export const LoginScreen: FC<LoginScreenProps> = function LoginScreen({ navigation }) {
+  const authPasswordInput = useRef<TextInput>(null);
+  const [authPassword, setAuthPassword] = useState("");
+  const [authEmail, setAuthEmail] = useState("");
+  const [isAuthPasswordHidden, setIsAuthPasswordHidden] = useState(true);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [attemptsCount, setAttemptsCount] = useState(0);
+  const { authenticationStore } = useStores();
 
-export const LoginScreen: FC<LoginScreenProps> = observer(function LoginScreen(_props) {
-  const authPasswordInput = useRef<TextInput>()
-  const [isAuthPasswordHidden, setIsAuthPasswordHidden] = useState(true)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [attemptsCount, setAttemptsCount] = useState(0)
-  const {
-    authenticationStore: {
-      authEmail,
-      authPassword,
-      setAuthEmail,
-      setAuthPassword,
-      setAuthToken,
-      validationErrors,
-    },
-  } = useStores()
+const handleEmailChange = (email: string) => {
+  setAuthEmail(email); // Update local state
+  authenticationStore.setAuthEmail(email); // Update email in AuthenticationStore
+};
+const error = isSubmitted ? authenticationStore.validationError : "";
 
-  useEffect(() => {
-    // Here is where you could fetch credentials from keychain or storage
-    // and pre-fill the form fields.
-    setAuthEmail("ignite@infinite.red")
-    setAuthPassword("ign1teIsAwes0m3")
-  }, [])
+const handleSignIn = async () => {
+  setIsSubmitted(true);
+  setAttemptsCount(attemptsCount + 1);
 
-  const errors: typeof validationErrors = isSubmitted ? validationErrors : ({} as any)
+  if (authenticationStore.validationError) return;
 
-  function login() {
-    setIsSubmitted(true);
-    setAttemptsCount(attemptsCount + 1);
-  
-    if (Object.values(validationErrors).some((v) => !!v)) return;
-  
-    // Make a request to sign in with email and password
-    AuthManager.shared.signInWithEmailAndPassword(authEmail, authPassword, (success) => {
-      setIsSubmitted(false);
-      if (success) {
-        setAuthPassword(""); // Clear the password field on successful login
-        // Optionally, navigate to the main app screen or perform other actions
-      } else {
-        // Handle failed login
-      }
-    });
+  await authenticationStore.signInWithEmailAndPassword(authEmail, authPassword);
+
+  // Check if authToken is set, which indicates successful login
+  if (authenticationStore.authToken) {
+    navigation.navigate("Overhear"); // Navigate to OverhearScreen
+  } else {
+    // Show an alert if authToken is not set after attempting to sign in
+    Alert.alert("Login Failed", "Incorrect email or password. Please try again.");
   }
 
-  const PasswordRightAccessory = useMemo(
-    () =>
-      function PasswordRightAccessory(props: TextFieldAccessoryProps) {
-        return (
-          <Icon
-            icon={isAuthPasswordHidden ? "view" : "hidden"}
-            color={colors.palette.neutral800}
-            containerStyle={props.style}
-            onPress={() => setIsAuthPasswordHidden(!isAuthPasswordHidden)}
-          />
-        )
-      },
-    [isAuthPasswordHidden],
-  )
+  setIsSubmitted(false);
+};
 
-  useEffect(() => {
-    return () => {
-      setAuthPassword("")
-      setAuthEmail("")
+const handleAnonymousSignIn = async () => {
+  try {
+    await authenticationStore.anonymousSignIn();
+    if (authenticationStore.authToken) {
+      navigation.navigate("Overhear"); // Navigate to OverhearScreen
+    } else {
+      Alert.alert("Error", "Could not retrieve anonymous session token.");
     }
-  }, [])
+  } catch (error) {
+    console.error("Anonymous Login Error:", error);
+    Alert.alert("Error", "Could not continue as anonymous.");
+  }
+};
+
+
+  const PasswordRightAccessory = function PasswordRightAccessory() {
+    return (
+      <Icon
+        icon={isAuthPasswordHidden ? "view" : "hidden"}
+        color={colors.palette.neutral800}
+      
+        size={20}
+        onPress={() => setIsAuthPasswordHidden(!isAuthPasswordHidden)}
+      />
+    )
+  }
 
   return (
     <Screen
@@ -87,7 +80,7 @@ export const LoginScreen: FC<LoginScreenProps> = observer(function LoginScreen(_
 
       <TextField
         value={authEmail}
-        onChangeText={setAuthEmail}
+        onChangeText={handleEmailChange}
         containerStyle={$textField}
         autoCapitalize="none"
         autoComplete="email"
@@ -95,8 +88,8 @@ export const LoginScreen: FC<LoginScreenProps> = observer(function LoginScreen(_
         keyboardType="email-address"
         labelTx="loginScreen.emailFieldLabel"
         placeholderTx="loginScreen.emailFieldPlaceholder"
-        helper={errors?.authEmail}
-        status={errors?.authEmail ? "error" : undefined}
+        helper={error}
+        status={error ? "error" : undefined}
         onSubmitEditing={() => authPasswordInput.current?.focus()}
       />
 
@@ -111,9 +104,7 @@ export const LoginScreen: FC<LoginScreenProps> = observer(function LoginScreen(_
         secureTextEntry={isAuthPasswordHidden}
         labelTx="loginScreen.passwordFieldLabel"
         placeholderTx="loginScreen.passwordFieldPlaceholder"
-        helper={errors?.authPassword}
-        status={errors?.authPassword ? "error" : undefined}
-        onSubmitEditing={login}
+        onSubmitEditing={handleSignIn}
         RightAccessory={PasswordRightAccessory}
       />
 
@@ -122,36 +113,41 @@ export const LoginScreen: FC<LoginScreenProps> = observer(function LoginScreen(_
         tx="loginScreen.tapToSignIn"
         style={$tapButton}
         preset="reversed"
-        onPress={login}
+        onPress={handleSignIn}
+      />
+
+      <Button
+        testID="anonymous-button"
+        tx="loginScreen.continueAsGuest"
+        style={$tapButton}
+        onPress={handleAnonymousSignIn}
       />
     </Screen>
   )
-})
+}
+
 const $screenContentContainer: ViewStyle = {
-  paddingVertical: spacing.xxl,  
-  paddingHorizontal: spacing.lg,  
+  paddingVertical: spacing.xxl,
+  paddingHorizontal: spacing.lg,
 }
 
 const $signIn: TextStyle = {
-  marginBottom: spacing.sm,  
+  marginBottom: spacing.sm,
 }
 
 const $enterDetails: TextStyle = {
-  marginBottom: spacing.lg,  
+  marginBottom: spacing.lg,
 }
 
 const $hint: TextStyle = {
   color: colors.tint,
-  marginBottom: spacing.md,  
+  marginBottom: spacing.md,
 }
 
 const $textField: ViewStyle = {
-  marginBottom: spacing.lg,  
+  marginBottom: spacing.lg,
 }
 
 const $tapButton: ViewStyle = {
-  marginTop: spacing.xs,  
+  marginTop: spacing.xs,
 }
-
-
-// @demo remove-file
